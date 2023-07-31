@@ -40,7 +40,24 @@
 
         section {
             padding: 2rem;
-            text-align: center;
+            text-align: left; /* Set left alignment for the section content */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        h3 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 0.5rem;
+        }
+
+        ul {
+            list-style: disc; /* Set bullet points for unordered lists */
+            padding-left: 1.5rem; /* Add some left padding for the lists */
+        }
+
+        li {
+            margin-bottom: 0.5rem; /* Add some spacing between list items */
         }
 
         footer {
@@ -49,7 +66,15 @@
             padding: 1rem;
             text-align: center;
         }
-    </style>
+
+        .center-text {
+            text-align: center;
+        }
+        .column {
+            flex-basis: 48%; /* Adjust the width as needed */
+            margin-bottom: 1rem;
+        }
+    </style> 
 </head>
 <body>
 <header>

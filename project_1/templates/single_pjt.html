@@ -2,8 +2,19 @@
 {% block title %}From Project 1{% endblock %}
 {% block heading %}Django Project One{% endblock %}
 {% block content %}
-<section>
-    <h2>Welcome to Django Project</h2>
-    <p>This is from the html file meant for projects.</p>
-</section>
+<div class="center-text">
+<h2>Welcome to Django Project</h2>
+<p>This is from the html file meant for projects. The lists will be left aligned and they will be one after the another.</p>
+</div>
+<div>
+{% for e in lists %}
+<h3>{{e}}</h3>
+  {% cycle visit_places do_things famous_people tales as sub_list silent %}
+    <ul>
+      {% for l in sub_list %}
+        <li>{{l}}</li>
+      {% endfor %}
+    </ul>
+</div>
+{% endfor %}
 {% endblock %}
