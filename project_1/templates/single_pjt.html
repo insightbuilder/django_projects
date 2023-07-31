@@ -8,11 +8,11 @@
 </div>
 <div>
 {% for e in lists %}
-<h3>{{e}}</h3>
+<h3>{{e|title}}</h3>
   {% cycle visit_places do_things famous_people tales as sub_list silent %}
     <ul>
       {% for l in sub_list %}
-        <li>{{l}}</li>
+        <li>{{l|title}}</li>
       {% endfor %}
     </ul>
 </div>

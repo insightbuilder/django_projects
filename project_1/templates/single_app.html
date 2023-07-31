@@ -11,27 +11,29 @@
 <section>
     <div class="column">
     {% for e in lists|slice:":2" %}
-      <h3>{{e}}</h3>
+      <h3>{{e|title}}</h3>
         {% cycle inno_pdts condiments as sub_list silent %}
           <ul>
             {% for l in sub_list %}
               <li>{{l}}</li>
             {% endfor %}
           </ul>
+        <p>The length of this list added to 15 is {{sub_list|length|add:"15"}} </p>
     {% endfor %}
     </div>
 
     {#Starting the second for loop #}
     
     <div class="column">
-    {% for e in lists|slice:":2" %}
-      <h3>{{e}}</h3>
+    {% for e in lists|slice:"2:" %}
+      <h3>{{e|title}}</h3>
         {% cycle anoms timelines as sub_list silent %}
           <ul>
             {% for l in sub_list %}
               <li>{{l}}</li>
             {% endfor %}
           </ul>
+        <p>The length of this list added to 15 is {{sub_list|length|add:"15"}} </p>
     {% endfor %}
     </div>
 </section>

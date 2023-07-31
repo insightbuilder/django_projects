@@ -33,11 +33,11 @@ innovative_products = [
 ]
 
 lists = [
-    "historical_timelines",
-    "geographical_anomalies",
-    "condiments",
-    "innovative_products",
-]
+    "Condiments",
+    "Innovative_products",
+    "Historical_timelines",
+    "Geographical_anomalies",
+    ]
 # Create your views here.
 
 def APP_INDEX(request):

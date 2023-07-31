@@ -49,3 +49,5 @@ def INDEX(request):
     
     return render(request, 'single_pjt.html',context)
 
+def SINGLE(request):
+    return render(request, 'single_page.html')
