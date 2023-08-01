@@ -51,3 +51,6 @@ def INDEX(request):
 
 def SINGLE(request):
     return render(request, 'single_page.html')
+
+def ASSEMBLED(request):
+    return render(request, 'assembled_page.html')
