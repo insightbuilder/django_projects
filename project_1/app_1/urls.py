@@ -5,7 +5,9 @@ from . import views
 urlpatterns = [
     path('app_index',views.APP_INDEX, name='app_index'),
     path('book',views.BOOK_DATA,name='book'),
-    path('ggml',views.AI_GGML,name='ggml')
-    path('aipage',views.AI_PAGE,name='aipage')
+    path('ggml',views.AI_GGML,name='ggml'),
+    path('aipage',views.AI_PAGE,name='aipage'),
+    path('falconpg',views.F_PAGE, name='falconpg'),
+    path('falcon', views.AI_FALCON, name='falcon')
 ]
 

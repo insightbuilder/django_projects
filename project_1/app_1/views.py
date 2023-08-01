@@ -91,6 +91,12 @@ def AI_GGML(request):
 
     print(model_out['choices'][0]['text'])
     output = model_out['choices'][0]['text']
+    #saving the query and output to database
+    query_data = Userquery(
+        query=query,
+        reply=output
+    )
+    query_data.save() 
     context = {
         'query':query,
         'output':output
@@ -100,3 +106,60 @@ def AI_GGML(request):
 
 def AI_PAGE(request):
     return render(request, 'ai_page.html')
+
+def F_PAGE(request):
+    return render(request, 'falcon_page.html')
+#The following code will load the falcon model into GPU
+#and then provide the inference
+
+
+import torch
+from transformers import BitsAndBytesConfig
+
+quantization_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_compute_dtype=torch.float16,
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_use_double_quant=True,
+)
+
+from transformers import AutoModelForCausalLM, AutoTokenizer,pipeline
+
+def AI_FALCON(request):
+    from langchain import PromptTemplate, LLMChain
+   
+    query = request.POST.get('query')
+    llmodel = request.POST.get('modelpath')
+    topk = request.POST.get('topk')
+    maxlen = request.POST.get('maxlength')
+    prompt_template = request.POST.get('prompt_template')
+    
+    if prompt_template == "":
+        prompt_template = """Question: {question}
+        Answer: Let's think step by step."""
+
+    #prompt = PromptTemplate(template=prompt_template,input_variables= ["question"])
+
+    #llm_chain = LLMChain(prompt=prompt, llm=falcon_llm)
+    #llm_chain_2 = LLMChain(prompt=prompt2, llm=llm) 
+
+    output = 'This is the placeholder text for model output'
+
+    #saving the query and output to database
+    query_data = Userquery(
+        query = query,
+        llmodel = llmodel,
+        topk = topk,
+        maxlength = maxlen, 
+        prompt_template = prompt_template,
+        reply=output 
+    )
+    
+    query_data.save() 
+    
+    context = {
+        'query':query,
+        'output':output
+    }
+    
+    return render(request, 'falcon_page.html', context)
