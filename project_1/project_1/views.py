@@ -39,6 +39,7 @@ lists = [
 ]
 
 def INDEX(request):
+    print('this is request pack',request.GET)
     context = {
         "lists":lists,
         "visit_places":places_to_visit,
