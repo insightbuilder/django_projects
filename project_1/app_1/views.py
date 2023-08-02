@@ -105,7 +105,11 @@ def AI_GGML(request):
     return render(request, 'ai_page.html', context)
 
 def AI_PAGE(request):
-    return render(request, 'ai_page.html')
+    queries = Userquery.objects.all().order_by('id')[:5]
+    context = {
+        "queries":queries
+    }
+    return render(request, 'ai_page.html', context)
 
 def F_PAGE(request):
     return render(request, 'falcon_page.html')
