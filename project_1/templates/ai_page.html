@@ -7,7 +7,7 @@
     <h2>Existing Queries</h2>
     <ul class="query-list">
       {% for q in queries %}
-      <li><button class="query-button">{{q.query|truncatewords:6}}</button></li>
+        <li><a href={{q.get_absolute_url}}><button class="query-button">{{q.query|truncatewords:5}}</button></a></li>
         <!-- Add more queries as needed -->
       {% endfor %}
     </ul>

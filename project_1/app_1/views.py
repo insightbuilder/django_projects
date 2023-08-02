@@ -83,6 +83,7 @@ def BOOK_DATA(request):
 
 def AI_GGML(request):
     
+    queries = Userquery.objects.all().order_by('id')[:5]
     query = request.GET['query']
     
     model_out = llm(query, 
@@ -98,6 +99,7 @@ def AI_GGML(request):
     )
     query_data.save() 
     context = {
+        'queries':queries,
         'query':query,
         'output':output
     }
@@ -105,14 +107,19 @@ def AI_GGML(request):
     return render(request, 'ai_page.html', context)
 
 def AI_PAGE(request):
-    queries = Userquery.objects.all().order_by('id')[:5]
+    queries = Userquery.objects.all().order_by('-id')[:5]
     context = {
         "queries":queries
     }
     return render(request, 'ai_page.html', context)
 
 def F_PAGE(request):
-    return render(request, 'falcon_page.html')
+    queries = Userquery.objects.all().order_by('-id')[:10]
+    context = {
+        "queries":queries
+    }
+
+    return render(request, 'falcon_page.html',context)
 #The following code will load the falcon model into GPU
 #and then provide the inference
 
@@ -132,6 +139,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer,pipeline
 def AI_FALCON(request):
     from langchain import PromptTemplate, LLMChain
    
+    queries = Userquery.objects.all().order_by('id')[:5]
     query = request.POST.get('query')
     llmodel = request.POST.get('modelpath')
     topk = request.POST.get('topk')
@@ -162,8 +170,22 @@ def AI_FALCON(request):
     query_data.save() 
     
     context = {
+        'queries':queries,
         'query':query,
         'output':output
     }
     
     return render(request, 'falcon_page.html', context)
+
+def QUERY_DETAIL(request,slug):
+
+    query = Userquery.objects.filter(slug=slug)
+
+    if query.exists():
+        query = query.first()
+
+    context = {
+        'query':query,
+    }
+
+    return render(request,'query_detail.html',context)

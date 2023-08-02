@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Query Detail{% endblock %}
+{% block heading %}Query Detail Page{% endblock %}
+{% block content %}
+<div class="content-container">
+  <div class="input-output-container">
+    <div class="center-text">
+    <h2>Query Details</h2>
+    </div>
+    <p>Query is: <span>{{query.query}}</span></p>
+    <div class="output" id="output-location">{{query.reply}}</div>
+  </div>
+</div>
+{% endblock %}

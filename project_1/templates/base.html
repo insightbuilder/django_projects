@@ -95,6 +95,16 @@
           display: block;
           margin: 0 auto; /* Center the input horizontally */
       }
+
+      input[type="number"] {
+          padding: 0.5rem;
+          width: 70%;
+          height: 40px; /* Adjust the height as needed */
+          font-size: 16px;
+          display: block;
+          margin: 0 auto; /* Center the input horizontally */
+      }
+
       .content-container {
           display: flex;
       }
@@ -114,16 +124,22 @@
           padding: 0.5rem;
           margin-bottom: 0.5rem;
           font-size: 16px;
-          background-color: #444;
-          color: #fff;
+          background-color: #ddd;
+          color: #333;
           border: none;
           text-align: left;
       }
       .query-button:hover {
-          background-color: #555;
+          background-color: #007bff;
+          font-weight: bold;
           border-radius: 4px;
+          color: #fff;
       }
-    </style>
+      a {
+          text-decoration: none;
+          color: inherit; /* Inherit the color from parent, for consistency */
+      }
+  </style>
 </head>
 <body>
 <header>
