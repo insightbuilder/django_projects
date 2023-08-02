@@ -9,12 +9,6 @@ from langchain.llms import LlamaCpp
 from llama_cpp import Llama
 #loading the model at the start of the server itself
 
-model_path = "/media/kamal/DATA/huggingface/hub/llama-2-7b.ggmlv3.q8_0.bin"
-
-llm = Llama(model_path=model_path)
-
-callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
-
 #loading the model using the langchain LLamaCpp class
 #llm = LlamaCpp(
 #    model_path=model_path,
@@ -82,8 +76,12 @@ def BOOK_DATA(request):
     return JsonResponse(books, safe=False)
 
 def AI_GGML(request):
-    
+    model_path = "/media/kamal/DATA/huggingface/hub/llama-2-7b.ggmlv3.q8_0.bin"
+
+    llm = Llama(model_path=model_path)
+
     queries = Userquery.objects.all().order_by('id')[:5]
+    
     query = request.GET['query']
     
     model_out = llm(query, 
@@ -123,40 +121,71 @@ def F_PAGE(request):
 #The following code will load the falcon model into GPU
 #and then provide the inference
 
-
-import torch
-from transformers import BitsAndBytesConfig
-
-quantization_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_compute_dtype=torch.float16,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_use_double_quant=True,
-)
-
-from transformers import AutoModelForCausalLM, AutoTokenizer,pipeline
-
 def AI_FALCON(request):
+    from langchain import HuggingFacePipeline
     from langchain import PromptTemplate, LLMChain
-   
+    import transformers
+    import torch
+    from transformers import BitsAndBytesConfig
+    from transformers import AutoModelForCausalLM, AutoTokenizer,pipeline
+    
+    quantization_config = BitsAndBytesConfig(
+        load_in_4bit=True,
+        bnb_4bit_compute_dtype=torch.float16,
+        bnb_4bit_quant_type="nf4",
+        bnb_4bit_use_double_quant=True,
+    )
+
     queries = Userquery.objects.all().order_by('id')[:5]
     query = request.POST.get('query')
     llmodel = request.POST.get('modelpath')
-    topk = request.POST.get('topk')
-    maxlen = request.POST.get('maxlength')
+    topk = int(request.POST.get('topk'))
+    maxlen = int(request.POST.get('maxlength'))
     prompt_template = request.POST.get('prompt_template')
-    
     if prompt_template == "":
         prompt_template = """Question: {question}
         Answer: Let's think step by step."""
 
-    #prompt = PromptTemplate(template=prompt_template,input_variables= ["question"])
+    model_4bit = AutoModelForCausalLM.from_pretrained(
+        llmodel,
+        device_map="auto",
+        quantization_config=quantization_config,
+        trust_remote_code=True)
+    #print(" 4-bit model loaded") 
+    
+    tokenizer = AutoTokenizer.from_pretrained(llmodel)
+    print("tokenizer ready")
+    
+    pipeline = transformers.pipeline(
+        "text-generation",
+        model=model_4bit,
+        tokenizer=tokenizer,
+        use_cache=True,
+        device_map="auto",
+        max_length=maxlen,
+        do_sample=True,
+        top_k=topk,
+        num_return_sequences=1,
+        eos_token_id=tokenizer.eos_token_id,
+        pad_token_id=tokenizer.eos_token_id,
+        )
+    print("pipeline done") 
 
+    #falcon_llm = HuggingFacePipeline(pipeline=pipeline)
+
+
+    prompt = PromptTemplate(template=prompt_template,
+                            input_variables= ["question"])
+
+    built_prompt = prompt.format(question=query)
+
+    #print(built_prompt)
     #llm_chain = LLMChain(prompt=prompt, llm=falcon_llm)
-    #llm_chain_2 = LLMChain(prompt=prompt2, llm=llm) 
 
-    output = 'This is the placeholder text for model output'
+    output = pipeline(built_prompt)[0]['generated_text']
 
+    #print(output)
+    
     #saving the query and output to database
     query_data = Userquery(
         query = query,

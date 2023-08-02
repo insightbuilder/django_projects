@@ -9,6 +9,6 @@ urlpatterns = [
     path('ggml',views.AI_GGML,name='ggml'),
     path('aipage',views.AI_PAGE,name='aipage'),
     path('falconpg',views.F_PAGE, name='falconpg'),
-    path('falcon', views.AI_FALCON, name='falcon')
+    path('falcon', views.AI_FALCON, name='falcon'),
 ]
 

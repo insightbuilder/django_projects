@@ -58,6 +58,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project_1.wsgi.application'
 
+# Configure session settings
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # You can choose a different backend if needed
+SESSION_COOKIE_SECURE = True  # Enable this for HTTPS connections
+SESSION_COOKIE_HTTPONLY = True  # Helps mitigate against XSS attacks
+SESSION_COOKIE_SAMESITE = 'Lax'  # Adjust as needed for your requirements
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

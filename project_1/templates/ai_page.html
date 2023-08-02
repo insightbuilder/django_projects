@@ -19,6 +19,10 @@
     <p>The model used in this page is "llama-2-7b.ggmlv3.q8_0.bin" which can be located <a href="https://huggingface.co/TheBloke/Llama-2-7B-GGML">Here</a></p>
     <p>The library used for loading the model is llama-cpp-python. The git repo is <a href="https://github.com/abetlen/llama-cpp-python">https://github.com/abetlen/llama-cpp-python</a></p>
     </div>
+    <div class="button-container">
+      <button class="url-button"><a href="{% url 'loadgg' %}">Load Llama2</a></button>
+      <button class="url-button"><a href="{% url 'unloadgg' %}">Unload</a></button>
+    </div>
     <h2>Input</h2>
     <form method="get" action="{% url 'ggml' %}">
         <input type="text" id="user-input" placeholder="Enter your query here" type="search" name="query">
