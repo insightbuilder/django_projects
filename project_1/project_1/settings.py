@@ -26,6 +26,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+        # Extensions - installed with pip3 / requirements.txt
+    'django_extensions',
+    'crispy_forms',
+    'rest_framework',
+    'social_django',
+    'taggit',
 ]
 
 MIDDLEWARE = [

@@ -10,5 +10,6 @@ urlpatterns = [
     path('aipage',views.AI_PAGE,name='aipage'),
     path('falconpg',views.F_PAGE, name='falconpg'),
     path('falcon', views.AI_FALCON, name='falcon'),
+    path('video_detail/<slug:slug>', views.VIDEO_DETAIL, name='video_detail'),
 ]
 

@@ -218,3 +218,15 @@ def QUERY_DETAIL(request,slug):
     }
 
     return render(request,'query_detail.html',context)
+
+def VIDEO_DETAIL(request,slug):
+    video = Video.objects.filter(slug=slug)
+
+    if video.exists():
+        video = video.first()
+
+    context = {
+        'video':video
+    }
+
+    return render(request,'video_detail.html',context)
