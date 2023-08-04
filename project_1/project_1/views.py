@@ -55,3 +55,6 @@ def SINGLE(request):
 
 def ASSEMBLED(request):
     return render(request, 'assembled_page.html')
+
+def PAGE_NOT_FOUND(request):
+    return render(request, '404.html')

@@ -268,4 +268,3 @@ def SEARCH(request):
     }
 
     return render(request, 'gallery/filter_gallery.html',context)
-

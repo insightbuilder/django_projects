@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% load static %}
+{% block content %}
+<div class="login-container">
+  <form class="login-form" action="{% url 'doLogin' %}" method="post">
+    {% csrf_token %}
+      <h2>Login</h2>
+      <div class="input-group">
+          <label for="username">EmailID:</label>
+          <input type="text" id="username" name="email" required>
+      </div>
+      <div class="input-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit">Login</button>
+      <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+  </form>
+</div>
+{% endblock %}

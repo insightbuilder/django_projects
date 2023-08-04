@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% load static %}
+{% block content %}
+<div class="login-container">
+  <form class="login-form" action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+      <h2>Register</h2>
+      <div class="input-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+      </div>
+      <div class="input-group">
+          <label for="username">Email:</label>
+          <input type="text" id="username" name="email" required>
+      </div>
+      <div class="input-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+      </div>
+      <div class="input-group">
+          <label for="confirm-password">Confirm Password:</label>
+          <input type="password" id="confirm-password" name="confirm-password" required>
+      </div>
+      <button type="submit">Register</button>
+      <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+  </form>
+</div>
+{% endblock %}
