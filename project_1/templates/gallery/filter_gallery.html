@@ -1,0 +1,35 @@
+{% extends 'gallery_base.html' %}
+{% load static %}
+{% block heading %}Welcome To Video{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="sidebar">
+        <h2>Filter by Playlist</h2>
+        <ul class="playlist-list">
+            <li data-filter="all" class="active">All Videos</li>
+            {% for play in playlists %}
+            <li><a href={{play.get_absolute_url}}><button class="query-button">{{play.playlist_name|truncatewords:5}}</button></a></li>
+            {% endfor %}
+            <!-- Add more playlists as needed -->
+        </ul>
+    </div>
+    <div class="video-gallery">
+      {% for vid in videos %}
+        {% if forloop.counter|divisibleby:"2" %}
+          <div class="video playlist1">
+            <a href="{{vid.video.videourl}}">
+              <img src="{{vid.video.featured_image}}" alt="{{vid.video.title}}">
+              </a>
+          </div>
+        {% else %}
+        <div class="video playlist2">
+          <a href="{{vid.video.videourl}}">
+            <img src="{{vid.video.featured_image}}" alt="{{vid.video.title}}">
+            </a>
+        </div>
+        {% endif %}
+        <!-- Add more videos with their thumbnails and assign them to corresponding playlists -->
+      {% endfor %}
+    </div>
+</div>
+{% endblock %}

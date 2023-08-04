@@ -230,3 +230,28 @@ def VIDEO_DETAIL(request,slug):
     }
 
     return render(request,'video_detail.html',context)
+
+def PLAYLIST_DETAIL(request,slug):
+    playlistvids = Playlistvideos.objects.filter(playlist__slug=slug) 
+
+    playlists = Playlist.objects.all()
+    
+    if playlistvids.exists():
+        videos = playlistvids
+
+    context = {
+        'videos':videos,
+        'playlists':playlists
+    }
+
+    return render(request,'gallery/filter_gallery.html',context)
+
+
+def GALLERY(request):
+    videos = Video.objects.all()[:12]
+    playlists = Playlist.objects.all()
+    context = {
+        'videos':videos,
+        'playlists':playlists
+    }
+    return render(request,'gallery/gallery.html',context)

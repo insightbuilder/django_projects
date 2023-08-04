@@ -26,6 +26,22 @@ def create_vid_slug(instance, new_slug=None):
         return create_slug(instance, new_slug=new_slug)
     return slug
 
+def create_pl_slug(instance, new_slug=None):
+    slug = slugify(instance.playlist_name)
+    if new_slug is not None:
+        slug = new_slug
+
+    qs = Video.objects.filter(slug=slug).order_by('-id')
+
+    exists = qs.exists()
+
+    if exists:
+        new_slug = "%s-%s" % (slug, qs.first().id)
+        return create_slug(instance, new_slug=new_slug)
+
+    return slug
+
+
 def pre_save_post_receiver(sender, instance, *args, **kwargs):
     if not instance.slug and instance.query:
         instance.slug = create_slug(instance)
@@ -33,6 +49,11 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
 def pre_save_video_reciever(sender,instance,*args,**kwargs):
     if not instance.slug and instance.title:
         instance.slug = create_vid_slug(instance)
+
+def pre_save_pl_reciever(sender,instance,*args,**kwargs):
+    if not instance.slug and instance.playlist_name:
+        instance.slug = create_pl_slug(instance)
+
 
 class Book(models.Model):
     name = models.CharField(max_length=200,null=False)
@@ -61,9 +82,15 @@ class Userquery(models.Model):
 class Playlist(models.Model):
     playlist_name=models.CharField(max_length=200)
     playlist_url=models.CharField(max_length=250)
+    slug= models.SlugField(max_length=250,default='',null=True,blank=True)
 
     def __str__(self):
         return self.playlist_name
+    
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('playlist_detail',kwargs={'slug':self.slug})
+
 
 class Video(models.Model):
     vid_id = models.CharField(max_length=25,null=False)
@@ -91,3 +118,5 @@ class Playlistvideos(models.Model):
 pre_save.connect(pre_save_post_receiver, Userquery)
 
 pre_save.connect(pre_save_video_reciever, Video)
+
+pre_save.connect(pre_save_pl_reciever, Playlist)

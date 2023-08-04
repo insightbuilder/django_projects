@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Link the external CSS file -->
+    <title>Video Gallery</title>
+</head>
+<body>
+<header>
+  {% block heading %}{% endblock %}
+</header>
+{% include 'gallery/gallery_nav.html' %}
+{% block content %}
+{% endblock %}
+{% include 'footer.html' %}
+</body>
+</html>
+
