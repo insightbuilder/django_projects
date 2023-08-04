@@ -81,6 +81,13 @@ class Video(models.Model):
         from django.urls import reverse
         return reverse('video_detail',kwargs={'slug':self.slug})
 
+class Playlistvideos(models.Model):
+    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.playlist.playlist_name
+
 pre_save.connect(pre_save_post_receiver, Userquery)
 
 pre_save.connect(pre_save_video_reciever, Video)
