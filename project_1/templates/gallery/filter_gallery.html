@@ -13,7 +13,7 @@
         </div>
         <h2>Filter by Playlist</h2>
         <ul class="playlist-list">
-            <li data-filter="all" class="active">All Videos</li>
+          <li data-filter="all" class="active"><a href="{% url 'gallery' %}">All Videos</a></li>
             {% for play in playlists %}
             <li><a href={{play.get_absolute_url}}><button class="query-button">{{play.playlist_name|truncatewords:5}}</button></a></li>
             {% endfor %}
@@ -26,7 +26,7 @@
             <a href="{{vid.videourl}}">
               <img src="{{vid.featured_image}}" alt="{{vid.title}}">
             </a>
-        </div>
+          </div>
         {% endfor %}
         <!-- Add more videos with their thumbnails and assign them to corresponding playlists -->
     </div>

@@ -156,7 +156,7 @@ button[type="submit"]:hover {
 }
 
 .sidebar {
-    flex: 0.35;
+    flex: 0.5;
     background-color: #f0f0f0;
     padding: 25px;
 }
@@ -199,7 +199,7 @@ button[type="submit"]:hover {
 }
 
 .video-filter {
-    flex-basis: calc(25% - 10px); /* Distribute 4 videos in a row with some margin */
+    flex-basis:25%; /* Distribute 4 videos in a row with some margin */
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
@@ -207,7 +207,7 @@ button[type="submit"]:hover {
 }
 
 .video-filter img{
-    max-width: 100%;
+    max-width: 450px;
     height: auto;
     border-radius: 5px;
     cursor: pointer;
@@ -238,4 +238,18 @@ button[type="submit"]:hover {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+.btn-register,
+.btn-login {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+.btn-login {
+    margin-right: 0;
 }

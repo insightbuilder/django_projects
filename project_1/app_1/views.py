@@ -244,7 +244,7 @@ def PLAYLIST_DETAIL(request,slug):
         'playlists':playlists
     }
 
-    return render(request,'gallery/filter_gallery.html',context)
+    return render(request,'gallery/playlist_gallery.html',context)
 
 
 def GALLERY(request):

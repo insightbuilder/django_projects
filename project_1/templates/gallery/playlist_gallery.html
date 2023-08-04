@@ -24,14 +24,14 @@
       {% for vid in videos %}
         {% if forloop.counter|divisibleby:"2" %}
           <div class="video playlist1">
-            <a href="{{vid.videourl}}">
-              <img src="{{vid.featured_image}}" alt="{{vid.title}}">
+            <a href="{{vid.video.videourl}}">
+              <img src="{{vid.video.featured_image}}" alt="{{vid.video.title}}">
               </a>
           </div>
         {% else %}
         <div class="video playlist2">
-          <a href="{{vid.videourl}}">
-            <img src="{{vid.featured_image}}" alt="{{vid.title}}">
+          <a href="{{vid.video.videourl}}">
+            <img src="{{vid.video.featured_image}}" alt="{{vid.video.title}}">
             </a>
         </div>
         {% endif %}
