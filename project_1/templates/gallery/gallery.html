@@ -4,6 +4,13 @@
 {% block content %}
 <div class="container">
     <div class="sidebar">
+        <h2>Search and Filter</h2>
+          <div class="search-box">
+            <form action="{% url 'search' %}" method="get" class="search-box">
+              <input type="text" id="searchInput" name="query" placeholder="Search...">
+              <button type="submit" id="searchButton">Search</button>
+            </form>
+          </div>
         <h2>Filter by Playlist</h2>
         <ul class="playlist-list">
             <li data-filter="all" class="active">All Videos</li>

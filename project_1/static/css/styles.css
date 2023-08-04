@@ -156,9 +156,9 @@ button[type="submit"]:hover {
 }
 
 .sidebar {
-    flex: 1;
+    flex: 0.35;
     background-color: #f0f0f0;
-    padding: 20px;
+    padding: 25px;
 }
 
 .playlist-list {
@@ -191,11 +191,51 @@ button[type="submit"]:hover {
     display: block;
 }
 
+.gallery-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.video-filter {
+    flex-basis: calc(25% - 10px); /* Distribute 4 videos in a row with some margin */
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-filter img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .video img {
-    width: 100%;
+    width: 400px;
     height: auto;
     border-radius: 5px;
     cursor: pointer; /* Change cursor to pointer on hover */
 }
+.search-box button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+.search-box {
+    display: flex;
+    margin-bottom: 10px;
+}
 
-
+.search-box input[type="text"] {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

@@ -255,3 +255,17 @@ def GALLERY(request):
         'playlists':playlists
     }
     return render(request,'gallery/gallery.html',context)
+
+def SEARCH(request):
+    query = request.GET['query']
+    print(query)
+    playlists = Playlist.objects.all()
+    videos = Video.objects.filter(title__icontains = query)
+    print(len(videos))
+    context = {
+        'playlists':playlists,
+        'videos':videos,
+    }
+
+    return render(request, 'gallery/filter_gallery.html',context)
+
