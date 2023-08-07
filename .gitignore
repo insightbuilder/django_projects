@@ -26,6 +26,8 @@ share/python-wheels/
 *.egg
 MANIFEST
 *.png
+*.jpg
+/project_2/thumbnails
 /project_1/Media
 *.zip
 # PyInstaller
