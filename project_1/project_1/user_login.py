@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.contrib.auth import logout
 
 from django.contrib import messages
 
@@ -77,3 +78,7 @@ def Profile_Update(request):
         user.save()
         messages.success(request,'Profile Are Successfully Updated. ')
         return redirect('profile')
+
+def LOGOUT(request):
+    logout(request)
+    return redirect('home')

@@ -15,6 +15,7 @@ urlpatterns = [
     path('accounts/profile_update',user_login.Profile_Update, name='profile_update'),
     path('accounts/profile',user_login.PROFILE, name='profile'),
     path('404',views.PAGE_NOT_FOUND, name='404'), 
+    path('logout',user_login.LOGOUT,name='logout'),
     path('', views.INDEX, name='home'),
     path('app_1/',include('app_1.urls')),
     path('single/',views.SINGLE,name='single'),
