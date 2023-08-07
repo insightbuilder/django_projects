@@ -7,12 +7,15 @@ from django.db.models.signals import pre_save
 class Category(models.Model):
     category_id = models.IntegerField()
     category_name = models.CharField(max_length=60)
+    slug = models.SlugField(default='',max_length=100,null=True, blank=True)
 
     def __str__(self):
         return self.category_name
     #Write the absolute url method
+
     def get_absolute_url(self):
-        return reverse('filter_pl',kwargs={'str':self.category_name})
+        print(reverse('filter',kwargs={'slug':self.slug}))
+        return reverse('filter',kwargs={'slug':self.slug})
 
 class Video(models.Model):
     video_id = models.CharField(max_length=15)
@@ -31,10 +34,10 @@ class Video(models.Model):
     
 def create_slug(instance, new_slug=None):
     """Creates the slug after checking if slug is required in the instance"""
-    slug = slugify(instance.title)
+    slug = slugify(instance.category_name)
     if new_slug is not None:
         slug = new_slug
-    qs = Video.objects.filter(slug=slug).order_by('-id')
+    qs = Category.objects.filter(slug=slug).order_by('-id')
     exists = qs.exists()
     if exists:
         new_slug = "%s-%s" % (slug, qs.first().id)
@@ -42,8 +45,8 @@ def create_slug(instance, new_slug=None):
     return slug
 
 def pre_save_post_receiver(sender, instance, *args, **kwargs):
-    if not instance.slug and instance.title:
+    if not instance.slug and instance.category_name:
         instance.slug = create_slug(instance)
 
 #This will provide the required slug
-pre_save.connect(pre_save_post_receiver, Video)
+pre_save.connect(pre_save_post_receiver, Category)

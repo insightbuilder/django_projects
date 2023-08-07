@@ -20,15 +20,23 @@ def HOME(request):
                 There are {video_count} videos and {categ_count} categories
                 in the data available."""
 
-
+    """
+        context = {
+            "text":text,
+            #use the values() to get the values from the queryset
+            "categs":list(categs.order_by('id')[:5].values()),
+            "vids":list(vids.order_by('id')[:5].values())
+        }
+    """
     context = {
         "text":text,
         #use the values() to get the values from the queryset
-        "categs":list(categs.order_by('id')[:5].values()),
-        "vids":list(vids.order_by('id')[:5].values())
+        "categs":categs.order_by('id')[:5],
+        "vids":vids.order_by('id')[:5]
     }
 
-    return JsonResponse(context, safe=False)
+    #return JsonResponse(context, safe=False)
+    return render(request, 'gallery/home.html',context)
 
 # gallery view 
 
@@ -37,31 +45,65 @@ def GALLERY(request):
     along with the videos in the gallery. The categories listed 
     must have greater than 10 videos."""
 
-    categs = list(Category.objects.all()[:10].values())
+    categs = Category.objects.all()
     
-    video_count = Category.objects.annotate(num_videos=Count('video'))
+    categ_count = Category.objects.annotate(num_videos=Count('video'))
     
-    print(video_count[0].num_videos)
+    print(categ_count[0].num_videos)
 
-    video_count_value = list(video_count.values().order_by('-num_videos'))
+    categ_video_count = categ_count.values().order_by('-num_videos')
 
-    video = list(Video.objects.all()[:10].values())
+    videos = Video.objects.all()[:10]
 
+    print(categ_count[0].get_absolute_url)
+    context = {
+        "videos":videos,
+        "video_counts":categ_video_count,
+        "categs":categs
+    }
+
+    """
+    This context is used when doing JsonResponse
     context = {
         'categs':categs,
         'video_count':video_count_value,
         'video':video
     }
+    
 
     return JsonResponse(context, safe=False)
+    """
+    return render(request, 'gallery/gallery.html',context)
 
-def FILTER_PL(request,categ_name):
-    categs = list(Category.objects.all().values()) 
-    filter_vids = list(Video.objects.filter(category_id__category_name=categ_name).values()) 
+def FILTER_PL(request,slug):
+    categ_count = Category.objects.annotate(num_videos=Count('video'))
+    
+    categ_video_count = categ_count.values().order_by('-num_videos')
+    
+    categs = Category.objects.all()
 
-    #url_of_categs = list(Category.objects.all().get_absolute_urls.values()) 
+    filter_vids = Video.objects.filter(category_id__slug=slug) 
 
+    if filter_vids:
+
+        context = {
+            "category_name":filter_vids[0].category_id.category_name,
+            "videos":filter_vids,
+            "categs":categs
+        }
+
+        return render(request, 'gallery/filter_gallery.html',context)
+
+    else:
+
+        context ={
+            "category_name":"No Video Available"
+        }
+
+        return render(request, 'gallery/filter_gallery.html',context)
+    """
     context = {
+        'category_name':categ_name,
         'filter_vids':filter_vids,
         'categs':categs,
         #cannot access the method of model objects
@@ -69,3 +111,4 @@ def FILTER_PL(request,categ_name):
     }
 
     return JsonResponse(context,safe=False)
+    """

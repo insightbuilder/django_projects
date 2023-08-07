@@ -1,0 +1,150 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+header {
+    background-color: #222;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav {
+    background-color: #444;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    padding: 0.5rem;
+}
+
+nav a:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+section {
+    padding: 2rem;
+    text-align: left; /* Set left alignment for the section content */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+h3 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+}
+
+ul {
+    list-style: disc; /* Set bullet points for unordered lists */
+    padding-left: 1.5rem; /* Add some left padding for the lists */
+}
+
+li {
+    margin-bottom: 0.5rem; /* Add some spacing between list items */
+}
+
+footer {
+    background-color: #222;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+.center-text {
+    text-align: center;
+}
+.column {
+    flex-basis: 48%; /* Adjust the width as needed */
+    margin-bottom: 1rem;
+}
+.output {
+    margin-top: 1rem;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+.content-container {
+    display: flex;
+}
+a {
+    text-decoration: none;
+    color: inherit; /* Inherit the color from parent, for consistency */
+}
+.container {
+    display: flex;
+}
+
+.sidebar {
+    flex: 0.5;
+    background-color: #f0f0f0;
+    padding: 25px;
+}
+
+.playlist-list {
+    list-style: none;
+    padding: 0;
+}
+
+.playlist-list li {
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.playlist-list li.active {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.video-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
+    gap: 20px; /* Add space between videos */
+    justify-content: center; /* Center the videos horizontally */
+    margin: 20px; /* Add margin around the video gallery */
+}
+
+.video {
+    width: 100%; /* Set the width of each video item to fit the grid column */
+    display: block;
+}
+
+.video img {
+    width: 400px;
+    height: auto;
+    border-radius: 5px;
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+.search-box button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+.search-box {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.search-box input[type="text"] {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+

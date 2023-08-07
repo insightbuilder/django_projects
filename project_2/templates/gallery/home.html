@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block heading %}Welcome To Gallery{% endblock %}
+{% block content %}
+<h2>Page is built with Django Template Language</h2>
+<div class='center-text'>
+<p>{{text}}</p>
+</div>
+<section>
+    <div class="column">
+      <h3>Categories</h3>
+      <ul>
+      {% for e in categs %}
+        <li>{{e.id}} : {{e.category_name}}</li>
+      {% endfor %}
+      </ul>
+    </div>
+    <div class="column">
+      <h3>Videos</h3>
+      <ul>
+      {% for e in vids %}
+        <li>{{e.id}} : {{e.title}}</li>
+      {% endfor %}
+      </ul>
+    </div>
+</section>
+{% endblock %}
+
