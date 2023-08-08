@@ -14,8 +14,8 @@ class Category(models.Model):
     #Write the absolute url method
 
     def get_absolute_url(self):
-        print(reverse('filter',kwargs={'slug':self.slug}))
-        return reverse('filter',kwargs={'slug':self.slug})
+        #print(reverse('filter',kwargs={'slug':self.slug}))
+        return reverse('video_filter',kwargs={'slug':self.slug})
 
 class Video(models.Model):
     video_id = models.CharField(max_length=15)

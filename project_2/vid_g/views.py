@@ -1,114 +1,82 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
+
 from django.http import JsonResponse
+
 from .models import *
+
 from django.db.models import Avg, Count, Min, Sum
 
-# home view
-
 def HOME(request):
-    """Will render the home page of the project.
-    It will talk about the project and provide 
-    some categories and videos as list. """
+    """Will provide the data for the home page of the project.
+    """
+    #query all rows in table
+    categs_all = Category.objects.all()
+    #category paginator  
+    categs_paginator = Paginator(categs_all,5)
+    #getting page number
+    page_num_categs = request.GET.get('page')
+    #creating the paged objects
+    categs = categs_paginator.get_page(page_num_categs)
 
-    categs = Category.objects.all()
-    vids = Video.objects.all()
-    categ_count = len(categs)
-    video_count = len(vids)
-    
-    text = f"""Welcome to the Django Gallery Project. Navigate to the 
+    categ_count = len(categs_all)
+    #Querying all the videos 
+    vids_all = Video.objects.all()[:5]
+    #Videos Paginator
+    #vidlists_paginator = Paginator(vids_all,5)
+    #Getting Videos page number
+    #page_num_vids = request.GET.get('vids_page')
+    #Getting paged videos
+    #vids = vidlists_paginator.get_page(page_num_vids)
+
+    video_count = len(vids_all)
+
+    text = f"""Welcome to the Django Gallery Project. Navigate to the
                 video gallery using the above links in header.
                 There are {video_count} videos and {categ_count} categories
                 in the data available."""
 
-    """
-        context = {
-            "text":text,
-            #use the values() to get the values from the queryset
-            "categs":list(categs.order_by('id')[:5].values()),
-            "vids":list(vids.order_by('id')[:5].values())
-        }
-    """
     context = {
-        "text":text,
-        #use the values() to get the values from the queryset
-        "categs":categs.order_by('id')[:5],
-        "vids":vids.order_by('id')[:5]
+        "categs":categs,
+        "vidlist":vids_all,
+        "text":text
     }
 
     #return JsonResponse(context, safe=False)
-    return render(request, 'gallery/home.html',context)
+    return render(request,'home_trial.html',context)
 
-# gallery view 
+def VIDEO_FILTER(request,slug):
+    """Will provide the data for the filtered videos for the
+    home page of the project.
+    """
+    #query all rows in table
+    categs_all = Category.objects.all()
+    #category paginator  
+    categs_paginator = Paginator(categs_all,5)
+    #getting page number
+    page_num_categs = request.GET.get('page')
+    #creating the paged objects
+    categs = categs_paginator.get_page(page_num_categs)
 
-def GALLERY(request):
-    """Gallery contains the list of categories in the sidebar
-    along with the videos in the gallery. The categories listed 
-    must have greater than 10 videos."""
+    categ_count = len(categs_all)
+    #Querying all the videos 
+    vids_filter = Video.objects.filter(category_id__slug=slug)
 
-    categs = Category.objects.all()
-    
-    categ_count = Category.objects.annotate(num_videos=Count('video'))
-    
-    print(categ_count[0].num_videos)
+    category = vids_filter[0].category_id.category_name
 
-    categ_video_count = categ_count.values().order_by('-num_videos')
+    video_count = len(vids_filter)
 
-    videos = Video.objects.all()[:10]
+    text = f"""This page is rendered after filtering the 
+                videos based on the category clicked. 
+                There are {video_count} videos in the 
+                {category} category"""
 
-    print(categ_count[0].get_absolute_url)
     context = {
-        "videos":videos,
-        "video_counts":categ_video_count,
-        "categs":categs
+        "categs":categs,
+        "vidlist":vids_filter,
+        "text":text
     }
 
-    """
-    This context is used when doing JsonResponse
-    context = {
-        'categs':categs,
-        'video_count':video_count_value,
-        'video':video
-    }
-    
+    #return JsonResponse(context, safe=False)
+    return render(request,'home_trial.html',context)
 
-    return JsonResponse(context, safe=False)
-    """
-    return render(request, 'gallery/gallery.html',context)
-
-def FILTER_PL(request,slug):
-    categ_count = Category.objects.annotate(num_videos=Count('video'))
-    
-    categ_video_count = categ_count.values().order_by('-num_videos')
-    
-    categs = Category.objects.all()
-
-    filter_vids = Video.objects.filter(category_id__slug=slug) 
-
-    if filter_vids:
-
-        context = {
-            "category_name":filter_vids[0].category_id.category_name,
-            "videos":filter_vids,
-            "categs":categs
-        }
-
-        return render(request, 'gallery/filter_gallery.html',context)
-
-    else:
-
-        context ={
-            "category_name":"No Video Available"
-        }
-
-        return render(request, 'gallery/filter_gallery.html',context)
-    """
-    context = {
-        'category_name':categ_name,
-        'filter_vids':filter_vids,
-        'categs':categs,
-        #cannot access the method of model objects
-        #'url_of_categs':url_of_categs
-    }
-
-    return JsonResponse(context,safe=False)
-    """

@@ -6,9 +6,9 @@ body {
     color: #333;
 }
 
-header {
+h1 {
     background-color: #222;
-    color: #fff;
+    color: #ff0;
     padding: 1rem;
     text-align: center;
 }
@@ -50,7 +50,8 @@ ul {
 }
 
 li {
-    margin-bottom: 0.5rem; /* Add some spacing between list items */
+    margin-bottom: 0.5rem; /* Add some spacing betweenlist items */
+    color: #f32;
 }
 
 footer {
@@ -146,5 +147,24 @@ a {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+/* Your CSS file */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+}
+
+.pagination a:hover {
+    background-color: #f5f5f5;
 }
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Link th
+e external CSS file -->
+    <title>Base Page</title>
+</head>
+<body>
+<h1>This is the home page</h1>
+<p>{{text}}</p>
+<section>
+  <div>
+    <h2>This is list of Categories</h2>
+    <ul>
+      {% for elem in categs.object_list %}
+      <li>{{elem.category_id}}</li>
+      <li><a href="{{elem.get_absolute_url}}">{{elem.category_name}}</a></li>
+      <p></p>
+      {% endfor %}
+    </ul>
+    <div class="pagination">
+      {% if categs.has_previous %}
+          <a href="?page={{ categs.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      <span class="current-page">{{ categs.number }}</span>
+
+      {% if categs.has_next %}
+          <a href="?page={{ categs.next_page_number }}">Next</a>
+      {% endif %}
+    </div>
+  </div>
+  <div>
+    <h2>This is list of videos</h2>
+    <ul>
+      {% for elem in vidlist %}
+        <li>{{elem.title}}</li>
+        <li>{{elem.category_id.category_name}}</li>
+        <p></p>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+</body>
+</html>
