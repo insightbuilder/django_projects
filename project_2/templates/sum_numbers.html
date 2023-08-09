@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sum of Numbers</title>
+</head>
+<body>
+    <h1>Calculate Sum of Numbers</h1>
+    <form method="post">
+        {% csrf_token %}
+        Number 1: <input type="number" name="num1"><br>
+        Number 2: <input type="number" name="num2"><br>
+        <input type="submit" value="Calculate">
+    </form>
+
+    {% if sum_result %}
+        <p>Sum: {{ sum_result }}</p>
+        <p>Numbers stored in session: {{ request.session.num1 }} and {{ request.session.num2 }}</p>
+    {% endif %}
+    {% if stored_data %}
+      {% for data in stored_data %}
+        <li>Num 1: {{data.num1}} & Num 2: {{data.num2}}</li>
+      {% endfor %}
+    {% endif %}
+</body>
+</html>
+
