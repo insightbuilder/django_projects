@@ -18,5 +18,6 @@ class UserAdmin(admin.ModelAdmin):
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
+admin.site.register(Dweet)
 
 # admin.site.register(Profile) #Removed as it is registered as inlines
