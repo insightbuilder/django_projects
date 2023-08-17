@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main role="main">
+  <div class="jumbotron">
+    {% for x in results|slice:"0:1"%}
+    <div class="container">
+      <h2 class="display-3">{{x.title|truncatewords:6}}</h2>
+      <p>{{x.body|urlizetrunc:10}}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      {% for x in results|slice:"1:" %}
+      <div class="col-md-6">
+        <h3>{{x.title|truncatewords:6}}</h3>
+        <p>{{x.body|urlizetrunc:10}}</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <hr>
+
+  </div> <!-- /container -->
+
+</main>
+{% endblock %}

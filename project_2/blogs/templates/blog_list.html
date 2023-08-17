@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <h1>Blog created from Youtube Data</h1>
+  <div class="row ml-2 mr-0">
+    <div class="col-6">
+      <div class="row mb-3">
+        {% for post in posts|slice:":5" %}
+        <a href="{% url 'blog_detail' post.pk %}">
+          <div>
+            <h5 class="mt-4">{{post.title}}</h5>
+            <small>{{post.createdon}}</small>
+          </div>
+          <p class="mb-1">{{post.body|truncatewords:15}}</p>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-4">
+      {% for c in categories|slice:"cat_id:cat_id+2" %}
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{c.name|truncatewords:5}}</h5>
+          <p class="card-text">{{c.name}}</p>
+          <a href="{% url 'cat_filter' c.pk %}" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+      {% endfor %} 
+    </div>
+  </div>
+</div>
+{% endblock %}

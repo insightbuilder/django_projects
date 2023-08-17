@@ -9,4 +9,5 @@ urlpatterns = [
     #note the modules are imported with .
     path('',include('vid_g.urls')),
     path('calc/',include('calculator.urls')),
+    path('blogs/',include('blogs.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

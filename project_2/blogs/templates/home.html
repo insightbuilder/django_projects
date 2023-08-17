@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1>Categories of Blogs</h1>
+<main role='main'>
+<div class="card-columns mt-5">
+  {% for card in categories %}
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{card.name|slice:"0:25"}}</h5>
+      <p class="card-text">{{card.name|truncatewords:10}}</p>
+      <a href="{% url 'cat_filter' card.pk %}" class="btn btn-primary">Learn More</a>
+    </div>
+  </div>
+  {% endfor %}
+</div> 
+</main>
+{% endblock %}

@@ -1,0 +1,15 @@
+<header class="blog-header py-5">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+      <a class="navbar-brand" href="{% url 'blog_list' %}">BlogRoll</a>
+      <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'search' %}">
+        <input class="form-control mr-sm-2" type="text" placeholder="Vector Search" aria-label="Search" name="query">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <form class="form-inline my-2 my-lg-0 ml-3" method="get" action="{% url 'reg_search' %}">
+        <input class="form-control mr-sm-2" type="text" placeholder="Regular Django Search" aria-label="Search" name="query">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Regular Search</button>
+      </form>
+    </nav>
+</header>
+

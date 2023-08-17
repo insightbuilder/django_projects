@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}GGML Llama{% endblock %}
+{% block heading %}Llama 2 & Django{% endblock %}
+{% block content %}
+<div class="content-container">
+  <div class="query-container">
+    <h2>Existing Queries</h2>
+    <ul class="query-list">
+      {% for q in queries %}
+        <li><a href={{q.get_absolute_url}}><button class="query-button">{{q.query|truncatewords:5}}</button></a></li>
+        <!-- Add more queries as needed -->
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="input-output-container">
+    <div class="center-text">
+    <h2>Welcome to Llama 2 on Django</h2>
+    <p>Enter your query in the text box below. Following your query submission the model in the back end will provide the reply</p>
+    <p>The model used in this page is "llama-2-7b.ggmlv3.q8_0.bin" which can be located <a href="https://huggingface.co/TheBloke/Llama-2-7B-GGML">Here</a></p>
+    <p>The library used for loading the model is llama-cpp-python. The git repo is <a href="https://github.com/abetlen/llama-cpp-python">https://github.com/abetlen/llama-cpp-python</a></p>
+    </div>
+    <h2>Input</h2>
+    <form method="get" action="{% url 'ggml' %}">
+        <input type="text" id="user-input" placeholder="This is to check..." name="query">
+        <textarea id="user-input" placeholder="This is a text area" type="search" name="query"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+    <p>Your Query is: <span>{{query}}</span></p>
+    <div class="output" id="output-location">{{output}}</div>
+  </div>
+</div>
+{% endblock %}

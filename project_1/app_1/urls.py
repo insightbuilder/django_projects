@@ -8,6 +8,7 @@ urlpatterns = [
     path('query_detail/<slug:slug>',views.QUERY_DETAIL,name='query_detail'),
     path('ggml',views.AI_GGML,name='ggml'),
     path('aipage',views.AI_PAGE,name='aipage'),
+    path('chat',views.CHAT_PAGE,name='chat'),
     path('falconpg',views.F_PAGE, name='falconpg'),
     path('falcon', views.AI_FALCON, name='falcon'),
     path('video_detail/<slug:slug>', views.VIDEO_DETAIL, name='video_detail'),
