@@ -53,7 +53,7 @@ def search(request):
 
     embedding = SentenceTransformerEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
-    db = FAISS.load_local("/home/kamal/gitfolders/practice/website/blogs/yt_data/",embedding)
+    db = FAISS.load_local("/home/kamal/gitfolders/django_projects/website/blogs/yt_data/",embedding)
     
     docs = db.similarity_search(query,k=7)
 

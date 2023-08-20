@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+{% block title %}Search Page{% endblock %}
+{% block content %}
+    <main role="main">
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      {% for head in results|slice:"0:1" %}
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">{{head.source}}</h1>
+          <p>{{head.content|truncatewords:50|urlizetrunc:30}}</p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        </div>
+      </div>
+      {% endfor %}
+   
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          {% for head in results|slice:"1:" %}
+          <div class="col-md-4">
+            <h2>{{head.source}}</h2>
+            <p>{{head.content|truncatewords:50|urlizetrunc:30}}</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+          </div>
+          {% endfor %}
+        </div>
+{% endblock %}

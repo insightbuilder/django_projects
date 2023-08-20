@@ -1,0 +1,326 @@
+{
+    "kind": "youtube#videoCategoryListResponse",
+    "etag": "HIrK3n45Uw2IYz9_U2-gK1OsXvo",
+    "items": [
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "IfWa37JGcqZs-jZeAyFGkbeh6bc",
+            "id": "1",
+            "snippet": {
+                "title": "Film & Animation",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "5XGylIs7zkjHh5940dsT5862m1Y",
+            "id": "2",
+            "snippet": {
+                "title": "Autos & Vehicles",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "HCjFMARbBeWjpm6PDfReCOMOZGA",
+            "id": "10",
+            "snippet": {
+                "title": "Music",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "ra8H7xyAfmE2FewsDabE3TUSq10",
+            "id": "15",
+            "snippet": {
+                "title": "Pets & Animals",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "7mqChSJogdF3hSIL-88BfDE-W8M",
+            "id": "17",
+            "snippet": {
+                "title": "Sports",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "0Z6uGkj97NgjD-X3pkA-nL18Hqk",
+            "id": "18",
+            "snippet": {
+                "title": "Short Movies",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "K_-7stg0kIU7eUBOPUa6j5fqIMQ",
+            "id": "19",
+            "snippet": {
+                "title": "Travel & Events",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "I3IL9xGIM3MsULlqR4tvCsEKv98",
+            "id": "20",
+            "snippet": {
+                "title": "Gaming",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "D1W6tq5mMMCV0wtNxf9A6g9wWjU",
+            "id": "21",
+            "snippet": {
+                "title": "Videoblogging",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "QMEBz6mxVdklVaq8JwesPEw_4nI",
+            "id": "22",
+            "snippet": {
+                "title": "People & Blogs",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "v2n6q4JttoL4uUbazrcxNQRGPZk",
+            "id": "23",
+            "snippet": {
+                "title": "Comedy",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "Qi1csjh-POReitZEbR7CUw7dmao",
+            "id": "24",
+            "snippet": {
+                "title": "Entertainment",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "IbGXblQi8v_nOsXjirhul1NVcH8",
+            "id": "25",
+            "snippet": {
+                "title": "News & Politics",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "gYzt8dB8mlod-84ipMtjynYe9xU",
+            "id": "26",
+            "snippet": {
+                "title": "Howto & Style",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "hHUhloYhyMMqVkQ4LH9sr3aRQoU",
+            "id": "27",
+            "snippet": {
+                "title": "Education",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "KEdEtUd4WGk_aACrYI03UhGE33w",
+            "id": "28",
+            "snippet": {
+                "title": "Science & Technology",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "AioSVwhKNpZ2bhtw9SJmrkfY5-I",
+            "id": "29",
+            "snippet": {
+                "title": "Nonprofits & Activism",
+                "assignable": true,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "tMfbFvkfuPP8YnUEqpr0gcR6aWU",
+            "id": "30",
+            "snippet": {
+                "title": "Movies",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "totPMF_82XTvVFy0ExFgoKhTklM",
+            "id": "31",
+            "snippet": {
+                "title": "Anime/Animation",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "LNgRKNynxC50MeYV9e6XLPX9JC4",
+            "id": "32",
+            "snippet": {
+                "title": "Action/Adventure",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "harT7v7A6516SPdkqp81Xy5yfBw",
+            "id": "33",
+            "snippet": {
+                "title": "Classics",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "M6Y5Av0CP45r5GgpzamLfHj41y4",
+            "id": "34",
+            "snippet": {
+                "title": "Comedy",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "ZFbZGeeLYWolvmCLQM7m8Yio104",
+            "id": "35",
+            "snippet": {
+                "title": "Documentary",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "FD7naICnxxl8HOnZZJAzrWplzuU",
+            "id": "36",
+            "snippet": {
+                "title": "Drama",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "7fvdoCRRWE89SpB5UaOY8gGdbk0",
+            "id": "37",
+            "snippet": {
+                "title": "Family",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "H6d6HrYDy3EAVAxQR8Z-ShEva1k",
+            "id": "38",
+            "snippet": {
+                "title": "Foreign",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "Z3yra5IR8n2bkjvv3ZheAOQ-tUk",
+            "id": "39",
+            "snippet": {
+                "title": "Horror",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "3F8eda4xnGzGFmlpsFaf5_YpOgU",
+            "id": "40",
+            "snippet": {
+                "title": "Sci-Fi/Fantasy",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "HwuNLGhBJ4PZCEurr-SoqvHuKx8",
+            "id": "41",
+            "snippet": {
+                "title": "Thriller",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "qJ2eDOZWUDj8fbFYAIG_yzPCYRc",
+            "id": "42",
+            "snippet": {
+                "title": "Shorts",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "2sKmjip5q7FHJgqkHvnpMDgmddE",
+            "id": "43",
+            "snippet": {
+                "title": "Shows",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        },
+        {
+            "kind": "youtube#videoCategory",
+            "etag": "3IaZjRK8JeIkLMfRDX57P4FFb9A",
+            "id": "44",
+            "snippet": {
+                "title": "Trailers",
+                "assignable": false,
+                "channelId": "UCBR8-60-B28hp2BmDPdntcQ"
+            }
+        }
+    ]
+}

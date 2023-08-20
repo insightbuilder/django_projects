@@ -1,0 +1,34 @@
+## Documentation of Errors & their Solution in Django Framework
+
+Error 1: Image files were not visible on the browser.
+
+Try using the FileField data type 
+
+image = models.FileField(null=True, blank=True)
+
+Add the following to the settings.py
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
+MEDIA_URL = '/media/'
+
+Include the following in the urls.py
+
+urlpatterns = [
+    # your paths
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+Error 2: CSS files are not getting recognized by the Front end 
+
+Add STATICFILES_DIRS = [
+    # ...
+    ("downloads", "/opt/webfiles/stats"),
+]
+
+Add STATIC_ROOT = "/static/"
+Add STATIC_URL = "/static/"
+
+Ensure the static file recognizing apps are present in the installed apps
+
+'django.contrib.staticfiles',
+
+Error 3: 
