@@ -1,0 +1,40 @@
+job_title,job_description,budget,type,experience_level,bid_value,author
+"Python Trading Dashboard (Streamlit & Jupyter Notebook)","Need help building a Streamlit trading dashboard with a few tools to help me trade and evaluate investment opportunities. There will be 5-6 pages each with a few components, including charts, lists, heatmaps, etc.
+
+All data will come from Excel. Edits to the Excel should be immediately reflected in the dashboard, and any changes within the dashboard should also be reflected in Excel.
+
+Python must be well documented. Must be skilled with Jupyter Notebook.
+
+Up to additional $200 in bonus for completing work on time on schedule we both agree to.",600,Ongoing,Intermediate,16,'user_1'
+"Looking for an AWS EMR expert (Optimization and Job design)","We are currently moving our data pipeline to EMR. While the jobs are fairly simple (S3 inputs, transformation and S3 outputs). We are looking for someone with strong experience with EMR jobs (not just notebooks) to show us the best practices and stuff to avoid!
+
+The work will probably be one or two meetings and more if needed",500,one-time,Expert,8,'user_2'
+"Inventory Planning Tool","I’m looking to create a tool to improve inventory purchasing decisions based on historical data.
+Currently, I am using Method 5 inventory equation which uses standard deviation of lead time and demand data, as well as service rate, to determine the reorder point for an item. This is all done in Microsoft Access with an ODBC connection to our ERP system, which is an oracle database.
+
+I’m open to using more advanced tools to determine the reorder point.
+I  prefer Python and a desktop front end, but am also open to other solutions.
+
+Success looks like a functional tool to run ad-hoc: front end, back end, connection to oracle database or FTP dump, data output of reorder point.
+I'm open to ideas to improve the results of the tool!",2000,one-time,Intermediate,16,'user_1"
+"Build Python Streamlit Application for Data Pre-processing","We are looking for a streamlit developer to build an application that guides users to pre-process data, and registers each validated row of data to our system via an enrolment API.
+
+We want a streamlit application that:
+- allows user to be authenticated via an Auth0 universal login page
+- allows user to upload a csv to streamlit
+- calls REST APIs using data in CSV to fill missing data
+- calls REST APIs to get data validation rules
+- uses these and other custom validation rules to clean or flag errors in data
+- allows user to understand, download and correct data
+- allows user to complete an enrolment (via REST API) for every validated row of data
+- is dockerised as an image so that it can be deployed in our own k8s / docker swarm environment
+
+For this, the following skills might come in handy:
+- python
+- streamlit
+- pandas
+- auth0 and related streamlit auth0 components
+- REST API request
+- any framework that can help display tabular data in a user-friendly manner, like streamlit aggrid
+
+More detailed user flows, mockups, requirements, and technical documentation can be provided, after which we can agree on either an hourly rate-based engagement, or a project based engagement. Let us know what your usual engagement style is, and any questions you might have.",1200,Ongoing,Intermediate,16,"user_1"

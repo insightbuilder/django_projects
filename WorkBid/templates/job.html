@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Job_{{idx}}{% endblock %}
+{% block heading %}Work Bid{% endblock %}
+{% block content %}
+<main>
+  <h1 class="text-body-emphasis">{{work.title}}</h1>
+  <p class="fs-5 col-md-8"><span>Author:</span>{{work.author}}</p>
+  <hr class="col-3 col-md-2 mb-5">
+  <div class="row g-5">
+    <div class="col-md-8">
+      <h2 class="text-body-emphasis">Description</h2>
+      <p>{{work.description}}</p>
+      <p>Bid Here</p>
+      <a class="icon-link" href="{% url 'bid_show' %}"><span>Bid :</span>{{work.budget}}</a>
+    </div>
+  </div>
+</main>
+{% endblock %}

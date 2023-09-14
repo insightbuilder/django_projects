@@ -1,5 +1,7 @@
 ## Documentation of Errors & their Solution in Django Framework
 
+Ensure the {% load static %} tag is used in all the components
+
 Error 1: Image files were not visible on the browser.
 
 Try using the FileField data type 
@@ -12,7 +14,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 MEDIA_URL = '/media/'
 
 Include the following in the urls.py
-
+import django.conf import settings
+import django.conf.urls.static import static 
 urlpatterns = [
     # your paths
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

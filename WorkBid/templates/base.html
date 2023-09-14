@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    {% load static %}
+      <script src="{% static 'assets/js/color-modes.js' %}"></script>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="generator" content="Hugo 0.115.4">
+      <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cheatsheet/">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+      <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+      <title>{% block title %}{% endblock %}</title>
+    </head>
+  <body>
+    {% include 'header.html' %}
+    {% block content %}
+       
+    {% endblock %}
+    {% include 'footer.html' %}
+    <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/dist/js/cheatsheet.js' %}"></script></body>
+  </body>
+</html>

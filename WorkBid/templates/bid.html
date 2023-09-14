@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Bid{% endblock %}
+{% block content %}
+<main>
+<div class="col-md-7 col-lg-8">
+  <h4 class="mb-3">Bids done till date</h4>
+  <ul>
+    {% for b in bids %}
+    <li>{{b.work.title}}</li>
+    <li>{{b.bid_value}}</li>
+    <li>{{b.user}}</li>
+    {% endfor %}
+  </ul>
+</div>
+</main>
+{% endblock %}

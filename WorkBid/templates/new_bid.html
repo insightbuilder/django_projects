@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>BidForm</title>
+  </head>
+  <body>
+  <div class="col-md-7 col-lg-8">
+    <h4 class="mb-3">How much you will work for?</h4>
+    <form name="new" method="POST" action="?action=bid" novalidate="">
+      {% csrf_token %}
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label for="userName" class="form-label">Username</label>
+          <input type="text" name="user" class="form-control" id="userName" placeholder="user_1" value="user_5" required>
+        </div>
+        <div class="col-sm-6">
+          <label for="Work" class="form-label">WorkID</label>
+          <input type="text" name="work" class="form-control" id="Work" placeholder="work" value="1" required>
+        </div>
+        <div class="col-sm-2">
+          <label for="bidValue" class="form-label">Bid Here</label>
+          <input type="text" name="bid" class="form-control" id="bidValue" placeholder="Bid Here" value="576" required>
+        </div>
+      </div>
+
+      <hr class="my-4">
+
+      <button class="w-40 btn btn-primary" type="submit">Bidding</button>
+    </form>
+  </div>
+  </body>
+</html>
+

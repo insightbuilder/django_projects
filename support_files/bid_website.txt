@@ -1,0 +1,33 @@
+## Steps to build a job bidding web app
+The job owner will have a fixed budget, which is disclosed in this 
+case. The bid by the users is not visible to other users, but to the
+owner. 
+
+Which means there will be two types of users. One is owner and the 
+other is worker. 
+
+The owner can open multiple jobs, so the foreignkey of the owner 
+will be linked with the jobs he creates
+
+The user can bid for multiple jobs, with a value. So Bid must be a 
+seperate table, I think. It will contain the user, job and the bid 
+value. 
+
+1- User will log-in to website with email and password
+
+2- website will contain the jobs listed. 
+  2a - Job title, description, author, required_connects
+  2b - Required data has been collected from Upwork
+  2c - Create a model that contains the above data. 
+
+3- Each job can be reviewed and then bid can accepted. 
+  3a - To bid the user must be logged in and have connects available
+  3b - The bid along with the user will be visible to the job author 
+  
+  3c - The bid needs to be a seperate table.  
+
+4- The job for which the user has bid will be visible in his dash board
+
+5- Need to get the front-end fixed. 
+  5a - Website title will be Bidwork
+  5b - 

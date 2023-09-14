@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block heading %}Work Bid{% endblock %}
+{% block content %}
+<main>
+  <h1 class="text-body-emphasis">Work is First. Rest Next</h1>
+  <p class="fs-5 col-md-8">Lets get things Done!!!</p>
+
+  <hr class="col-3 col-md-2 mb-5">
+
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h2 class="text-body-emphasis">Your Work</h2>
+      <ul class="list-unstyled ps-0">
+        {% for w in works %}
+        <li>
+          <h2 class="text-body-emphasis">{{w.title}}</h2>
+          <a class="icon-link mb-1" href="{% url 'job' w.id %}" rel="noopener">
+            <p>{{w.description|truncatewords:15}}</p>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h2 class="text-body-emphasis">Guides</h2>
+      <p>Here are some more skills for you.</p>
+      <ul class="list-unstyled ps-0">
+        <li>
+          <a class="icon-link mb-1" href="../getting-started/introduction/">
+            <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+            Python Quick start guide
+          </a>
+        </li>
+        <li>
+          <a class="icon-link mb-1" href="../getting-started/webpack/">
+            <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+            Django server guide
+          </a>
+        </li>
+        <li>
+          <a class="icon-link mb-1" href="../getting-started/parcel/">
+            <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+            Langchain Newage guide
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>
+{% endblock %}
