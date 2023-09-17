@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'chat',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -68,8 +69,18 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'chat_site.wsgi.application'
+#WSGI_APPLICATION = 'chat_site.wsgi.application'
+#This will let daphne to control the runserver
+ASGI_APPLICATION = 'chat_site.asgi.application'
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
