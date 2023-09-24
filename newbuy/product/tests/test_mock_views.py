@@ -3,12 +3,11 @@ from django.urls import reverse
 from django.contrib.auth.models import User, AnonymousUser
 from product.views import detail_pdt 
 from mixer.backend.django import mixer
-from django.test import TestCase #The class gives access to the setUp method
 from unittest.mock import Mock, patch
+from unittest import TestCase
 import pytest
 
 
-@pytest.mark.django_db
 class TestView(TestCase):
 
     @classmethod

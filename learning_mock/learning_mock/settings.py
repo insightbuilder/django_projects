@@ -1,24 +1,15 @@
-import os 
-import sys
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-#The below code did not solve the challenge of pytest not working... 
-""" 
-if BASE_DIR not in sys.path:
-    sys.path.append(BASE_DIR)
-os.environ['DJANGO_SETTINGS_MODULE'] =  "igp_lrpe.settings"
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "igp_lrpe.settings")
-import django
-django.setup()
 
- """
+
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n0$jedw1^5-fkwai$)nl64h=hd+r3btp7e8((-h&%kcd*z1gtc'
+SECRET_KEY = 'django-insecure-&d#fi2zh-x=*k!ynfn8g+eyn2m!ib#4ek1&xcw_@(^99jdm@0*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -29,13 +20,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'product',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mocks',
 ]
 
 MIDDLEWARE = [
@@ -48,7 +39,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'newbuy.urls'
+ROOT_URLCONF = 'learning_mock.urls'
 
 TEMPLATES = [
     {
@@ -66,11 +57,11 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'newbuy.wsgi.application'
+WSGI_APPLICATION = 'learning_mock.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -81,7 +72,7 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -100,7 +91,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
+# https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -112,11 +103,11 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
+# https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
