@@ -13,6 +13,7 @@ class SnippetList(APIView):
     def get(self, request, format=None):
         snippets = Snippet.objects.all()
         serializer = SnippetSerializer(snippets, many=True)
+        # print(Response(serializer.data))
         return Response(serializer.data)
 
     def post(self, request, format=None):
