@@ -47,6 +47,10 @@
             - http -f POST :8000/reapp/post_task/ owner=owner1 title=task1 description="major task 1" category=0  
             * when using the get_object_or_404, the return is a list, so subscript it with [0]
         - retrieve tasks that belong to a owner
+    - Updating the owner name / email_id
+    - Delete the owner based on owner name
+    - Update the Task desc or Task title
+    - Delete the task based on the task Id
 
 chapters:
 0:00 Intro
