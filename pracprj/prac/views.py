@@ -41,8 +41,7 @@ def get_name(request):
 @csrf_exempt
 def put_name(request, ind):
     get = get_object_or_404(Subscriber, pk=ind)
-    print(request.body.decode('utf-8'))
-    # request_body = json.loads(request.body.decode('utf-8').replace("'", "\""))
+    # print(request.body.decode('utf-8'))  Only once needs to be used
     request_body = json.loads(request.body.decode('utf-8'))
     print(request_body)
     get['age'] = request_body['age']

@@ -1,0 +1,82 @@
+- Create environment    
+    * create virtual environment using python -m venv djangopjts
+    * activate it using djangopjts\Scripts\activate
+    * do pip install httpie django 
+- Create Django Project, and Django app. Keep the same name every time you run this warmup
+    * project: recap
+    * app: reapp
+    * Update the settings file under the project
+    * Create the urls.py file in app
+    * Update the urls.py file in project along with the path
+    * Start working with Views.py using the HttpResponse to begin with.
+    (No rendering to the front-end)
+- Complete CRED operation API calls using django, and steadily extend the app to 
+    include further ideas related to LLMs.
+        - simple get, no query params
+            * http GET :8000/reapp/
+            * http GET :8000/reapp/get_name/ name==nice
+        - simple get with idx 
+            * http GET :8000/reapp/get_idx/1
+        - get with single and multi-query params
+            * http GET :8000/reapp/mqp/ name==nice age==2
+        - simple post with idx 
+            * http POST :8000/reapp/post_idx/1
+        - post with key-value
+            * http -f POST :8000/reapp/post_multi/ name=superawesome age=25
+        - put with key-value
+            * http PUT :8000/reapp/put_name/ name=superawesome age=36
+        - put with url idx
+            * http PUT :8000/reapp/put_name_url/1 
+        - del with url idx
+            * http DEL :8000/reapp/put_name_url/1
+    - Was thinking of creating a video that provides the above end points, 
+    and include the database connectivity also.
+        - post task to task table in database
+            * http -f POST :8000/reapp/post_task/ title="task1" description="super task" category=1
+        - retrieve all tasks with get
+            * http :8000/reapp/atasks/
+        - retrieve one task
+            * http :8000/reapp/onetask/3
+    - Adding relationship between the multiple tables and retrieving them
+        * When creating ForeignKey and makingmigrations, django will complain 
+        that owner field cannot be empty. Choose the 2nd option to provide 
+        default value in models.py and it will proceed to make the migrations.
+        - add owners
+            - http -f POST :8000/reapp/regowner/ name=owner1 age=25 mail_id=owner1@localhost
+        - add tasks
+            - http -f POST :8000/reapp/post_task/ owner=owner1 title=task1 description="major task 1" category=0  
+            * when using the get_object_or_404, the return is a list, so subscript it with [0]
+        - retrieve tasks that belong to a owner
+
+chapters:
+0:00 Intro
+0:40 Why Warmup
+1:50 What we will discuss
+2:50 Warmup Tasks 
+4:30 Keeping Tables Same
+5:30 Projects Application & Tasks
+7:00 How is this different
+8:15 Creating Environment 
+12:00 Why multiple terminals?
+14:00 Creating Django Project & App
+17:20 Adding folders to workspace
+18:30 Modifying Settings
+20:30 Editing & Creating urls.py file
+24:00 Challenges faced & folder layout 
+26:30 Creating url_patterns in URLs.py in App
+28:10 Creating First View and Required Imports
+32:15 Adding Hello function to URL path
+33:50 Using HTTPie to send Get Request
+37:50 Views Function for Get with Single Query Params
+41:05 Requesting Get with Single Query Params
+43:00 View Function for Get with URL Slug 
+45:20 Requesting Get with URL Slug
+48:00 View Function with Multi Query Params
+50:50 Get Request with Multi Query Params 
+54:10 Working on Post Requests
+56:00 Import CSRF_EXEMPT
+59:30 GET Request with Slug on Post Function 
+1:00:00 POST Request with Slug
+1:01:30 Recap & Outro
+
+
