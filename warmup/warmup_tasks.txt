@@ -48,7 +48,11 @@
             * when using the get_object_or_404, the return is a list, so subscript it with [0]
         - retrieve tasks that belong to a owner
     - Updating the owner name / email_id
+        > http PUT :8000/ra/updt_owner/ name=owner2 mail_id=sec_owner@hotspot.com
     - Delete the owner based on owner name
+        > http :8000/ra/del_owner/owner2/
+            * The url path path('del_owner/<str:owner>/', del_owner, name='del_owner'),
+            The <str:owner>/ has to contain the trailing /, else it will not work.
     - Update the Task desc or Task title
     - Delete the task based on the task Id
 
