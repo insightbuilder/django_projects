@@ -11,9 +11,20 @@ import json
 import ast
 
 def hello(request):
+    """http://127.0.0.1:8000/prac/?name=new&age=2"""
+    """http GET localhost:8000/reapp/ name==user age==22"""
+    """http GET :8000/reapp/ name==user age==22"""
+    # getting multiple parameters into GET request
     print(request.GET['data'])
+    # print(request.GET['age'])
     return HttpResponse("This is first reply")
 
+# HTTPie commands
+# > http --form POST :8000/reapp/user/ name=user age=22
+# > http --multipart POST :8000/reapp/user/ name=user age=22
+# > will be getting the QueryDict when looking at the request.POST
+#   > on QueryDict object, we can use .dict() method to get dictionary output
+# 
 
 def get_name(request):
     if 'name' in request.GET:
