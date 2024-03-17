@@ -6,8 +6,8 @@ from django.shortcuts import (
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
 import json
-from .models import Task, Owner
-
+from .models import Task, Owner, Query
+from ollama import Client
 
 def hello(request):
     print(request)
@@ -129,3 +129,50 @@ def get_owners(request):
     return JsonResponse({
         "owners": list(owners)
     })
+
+
+@csrf_exempt
+def query_ollama(request):
+    # creating Ollama client, sending query to it
+    # query is stored in database first
+    # result of the query is recieved and stored
+    # and then response with the output is returned.
+    if request.POST:
+        query_dict = request.POST.dict()
+        query = query_dict['query']
+        model_use = query_dict['model_used']
+        try:
+            client = Client(host="http://aicontroller:11434")
+            text_res = client.chat(model=model_use,
+                                   messages=[
+                                        {"role": "user",
+                                         "content": query
+                                         }
+                                    ])
+        except Exception as e:
+            text_res = f"The call errored out...{e}"
+            write_query = Query(query=query,
+                                response_text=text_res,
+                                model_used=model_use)
+            write_query.save()
+            return HttpResponse('query errored out')
+
+        write_query = Query(query=query,
+                            response_text=text_res,
+                            model_used=model_use)
+        write_query.save()
+        return HttpResponse(text_res)
+
+    return HttpResponse('Do a post request...')
+
+
+def list_query(request):
+    queries = Query.objects.all().values()
+    data = []
+    for q in queries:
+        data.append({
+            "query": q['query'],
+            "response_text": q['response_text'],
+            "model_used": q['model_used']
+        })
+    return JsonResponse(data, safe=False)

@@ -14,3 +14,13 @@ class Task(models.Model):
     category = models.IntegerField()
     owner = models.ForeignKey(Owner,
                               on_delete=models.CASCADE,)
+
+
+class Query(models.Model):
+    query = models.CharField(max_length=1024,
+                             null=True)
+    response_text = models.CharField(max_length=5000,
+                                     null=True)
+    model_used = models.CharField(max_length=25,
+                                  null=False,
+                                  blank=True)

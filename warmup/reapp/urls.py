@@ -13,7 +13,9 @@ from .views import (
     one_task,
     post_tasks,
     post_owners,
-    get_owners
+    get_owners,
+    query_ollama,
+    list_query
 )
 
 urlpatterns = [
@@ -31,4 +33,6 @@ urlpatterns = [
     path('put_name/', put_name, name='put_name'),
     path('put_name_url/<int:idx>', put_name_url, name='put_name_url'),
     path('rem_name/', remove_name, name='remove_name'),
+    path('query_ol/', query_ollama, name='query_ol'),
+    path('q_list/', list_query, name='list_query'),
 ]

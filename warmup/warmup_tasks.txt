@@ -55,6 +55,12 @@
             The <str:owner>/ has to contain the trailing /, else it will not work.
     - Update the Task desc or Task title
     - Delete the task based on the task Id
+    - Adding support for complex activities.
+        - Posting the HF ml-models repo path 
+        - Listing the HF models in database
+        - Loading a tokenizer using AutoTokenizer 
+        & returning vectors 
+        - 
 
 chapters:
 0:00 Intro
