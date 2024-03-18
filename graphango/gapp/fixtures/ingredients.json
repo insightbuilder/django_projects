@@ -1,0 +1,52 @@
+[
+  {
+    "fields": {
+      "name": "Dairy"
+    },
+    "model": "gapp.category",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "name": "Meat"
+    },
+    "model": "gapp.category",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "category": 1,
+      "name": "Eggs",
+      "notes": "Good old eggs"
+    },
+    "model": "gapp.ingredient",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "category": 1,
+      "name": "Milk",
+      "notes": "Comes from a cow"
+    },
+    "model": "gapp.ingredient",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "category": 2,
+      "name": "Beef",
+      "notes": "Much like milk, this comes from a cow"
+    },
+    "model": "gapp.ingredient",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "category": 2,
+      "name": "Chicken",
+      "notes": "Definitely doesn't come from a cow"
+    },
+    "model": "gapp.ingredient",
+    "pk": 4
+  }
+]
