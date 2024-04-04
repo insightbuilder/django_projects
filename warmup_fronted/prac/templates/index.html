@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}TopGun{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Render Index</h2>
+    {% if name %}
+        <p class="badge badge-danger">This is where {{ name }} appears </p>
+    {% endif %}
+    {% if posted %}
+        <p class="badge badge-info">This is where {{ posted }} appears </p>
+    {% endif %}
+    <div class="p-2">
+        <h4>Get Form</h4>
+        <form action="{% url 'get_req' %}" method="get" class="form my-2 ml-3">
+            <p>
+                <label class="mr-3" for="name">Your Name</label>
+                <input type="text" name="name" id="name">
+            </p>
+            <p>
+                <label for="age" class="mr-3">Your Age</label>
+                <input type="text" name="age" id="age">
+            </p>
+            <button class="btn btn-info my-2 my-sm-0 ml-3" type="submit">Get</button>
+        </form>
+    </div>
+    <div class="p-2">
+        <h4>Post Form</h4>
+        <form action="{% url 'post_req' %}" method="post" class="form my-2 my-lg-0 ml-3">
+            <p>
+                <label class="mr-3" for="name">Post Name</label>
+                <input type="text" name="name" id="name">
+            </p>
+            <p>
+                <label for="age" class="mr-3">Your Age</label>
+                <input type="text" name="age" id="age">
+            </p>
+            <button class="btn btn-info my-2 my-sm-0 ml-3" type="submit">Post</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
