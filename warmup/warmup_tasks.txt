@@ -94,3 +94,35 @@ chapters:
 1:01:30 Recap & Outro
 
 
+django vid 3
+0:00 Intro to Warmup
+0:25 Concepts Presentation
+1:50 Activating VirtualEnv
+2:35 Setting YTTutorial Project
+3:50 Updating Settings.py
+5:55 Including flow.urls in urls.py
+7:20 Creating Base HTML Template
+9:15 Populating the CSS links on Base Template
+10:35 Preparing Header and Footer Templates
+13:05 Preparing main index.html
+14:31 Preparing page404.html 
+16:25 Creating first index_view function
+17:30 Configuring URLpattern path
+18:00 Firing up Server and correcting errors
+20:50 Getting Index Page Rendered success
+21:35 Writing get_name view for get_method form
+23:05 Writing page404 view function
+23:55 Configuring URLpattern for View functions
+24:55 Writing Get Method form in Index.html
+27:15 Adding Go Home button 
+28:40 Testing Get Form
+29:40 Updating Index.html for Get Output
+31:10 Writing Post view function
+32:10 Configuring URLpattern
+32:40 Creating Post Form
+33:35 Testing Post Form
+34:00 Updating Index.html for Post Output
+34:40 Testing Output
+35:15 Recap on Project
+36:10 Building Confidence
+

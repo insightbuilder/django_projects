@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}TopGun{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Streaming Output: </h2>
+    <div class="p-2" id="stream_out">
+    </div>
+    <div hx-get="{% url 'stream' %}" hx-swap="innerHTML" hx-target="#streamingContent"></div>
+    <div id="streamingContent"></div>
+    <script>
+        // Function to fetch streaming response and update HTML content
+        function fetchStreamingContent() {
+            // Create XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Define the URL of your Django view
+            var url = "{% url 'stream' %}";
+
+            // Handle each chunk of the response
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.LOADING) {
+                    // Update HTML content with each chunk received
+                    document.getElementById('streamingContent').innerHTML += xhr.responseText;
+                }
+            };
+
+            // Open asynchronous GET request to the Django view
+            xhr.open('GET', url, true);
+
+            // Send the request
+            xhr.send();
+        }
+
+        // Call fetchStreamingContent function when the page loads
+        window.onload = fetchStreamingContent;
+    </script>
+</div>
+{% endblock %}

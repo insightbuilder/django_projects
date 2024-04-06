@@ -5,7 +5,8 @@ from django.shortcuts import (
 )
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
+from django.http import StreamingHttpResponse
+import time
 
 def welcome(request):
     # return JsonResponse({'welcome': 'welcome'}, safe=False)
@@ -36,3 +37,24 @@ def post_req(request):
         return render(request, 'index.html', {"posted": name})
     else:
         return redirect('root')
+
+
+def streaming_view(request):
+    # Function to generate streaming content
+    def generate_content():
+        # Yield content in chunks
+        for i in range(10):
+            time.sleep(2)
+            yield f"Chunk {i}\n"
+    
+    # Create a streaming response with the generator function as content
+    response = StreamingHttpResponse(generate_content(), content_type="text/plain")
+    
+    # Optionally, you can set other response headers
+    response['Content-Disposition'] = 'attachment; filename="streaming_content.txt"'
+    
+    return response
+
+
+def streamer_load(request):
+    return render(request, 'streamer.html', {'test': "test"})
