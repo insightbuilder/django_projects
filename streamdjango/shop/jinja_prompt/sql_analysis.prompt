@@ -1,0 +1,11 @@
+Analyze the below table of purchased items and answer {{ question }} \n
+
+{% for data in itemsdb %}
+   customer: {{ data.name }}
+   item: {{ data.item}}
+   qty: {{ data.quantity }}
+   price: {{ data.price }}
+   total_spend: {{ data.total_spend}}
+   purchase_time: {{ data.purchase_ts}}
+   \n
+{% endfor %}
