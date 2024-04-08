@@ -11,6 +11,7 @@ from .views import (
     show_item,
     del_items,
     get_llm,
+    get_ol_llm,
     show_questions,
     stream_reply,
     del_questions
@@ -31,6 +32,7 @@ urlpatterns = [
          name='push_item'),
     path('del_items/', del_items, name='del_items'),
     path('get_llm/', get_llm, name='get_llm'),
+    path('get_ol_llm/', get_ol_llm, name='get_ol_llm'),
     path('show_quest/', show_questions, name='show_quest'),
     path('stream_reply/', stream_reply, name='stream_reply'),
     path('del_quests/', del_questions, name='del_quests'),

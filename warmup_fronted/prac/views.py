@@ -44,7 +44,7 @@ def streaming_view(request):
     def generate_content():
         # Yield content in chunks
         for i in range(10):
-            time.sleep(2)
+            time.sleep(0.5)
             yield f"Chunk {i}\n"
     
     # Create a streaming response with the generator function as content

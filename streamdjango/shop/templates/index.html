@@ -91,17 +91,17 @@
             <h3>Items in DB: {{ item_status }}</h3>
         </div>
         {% endif %}
-        <div class="w-100">
+        <div>
             <h3>Populate Tables: </h3>
             <p><strong>Names Table: </strong></p> 
             <div class="row">
                 <div class="col-3">
                     <a class="btn btn-sm btn-info" href="{% url 'get_n_name' %}">Get New Customer</a>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <a class="btn btn-sm btn-info" href="{% url 'show_name' %}">Show Customers</a>
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                 <a class="btn btn-sm btn-danger" href="{% url 'del_names' %}">Remove All Names</a>
                 </div>
             </div>
@@ -111,26 +111,40 @@
                     <a class="btn btn-sm btn-info" href="{% url 'getnitem' %}">Make New Purchase</a>
                 </div>
                     <a class="btn btn-sm btn-info" href="{% url 'show_item' %}">Show Purchase List</a>
-                <div class="col-3">
+                <div class="col-2">
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                     <a class="btn btn-sm btn-danger" href="{% url 'del_items' %}">Remove All Purchases</a>
                 </div>
             </div>
-            <p><strong>LLM Interaction: </strong></p> 
-            <div class="row">
-                <div class="col-4">
+        </div>
+        <div>
+            <p class="mt-3"><strong>LLM Interaction: </strong></p> 
+            <div class="w-100 d-flex">
+                <div class="w-50">
                     <form action="{% url 'get_llm' %}" method="get">
-                        <label for="text_query"></label>
-                        <input type="text" name="text_query" id="text_query">
+                        <label for="text_q1"></label>
+                        <input type="text" name="text_q1" id="text_q1">
                         <button class="btn btn-success" type="submit">LLM Query</button>
                     </form>
                 </div>
-                <div class="col-3">
-                    <a href="{% url 'show_quest' %}" class="btn btn-primary mx-3">Show Questions</a>
+                <div class="w-50">
+                    <form action="{% url 'get_ol_llm' %}" method="get">
+                        <label for="text_q2"></label>
+                        <input type="text" name="text_q2" id="text_q2">
+                        <button class="btn btn-success" type="submit">Query Ollama</button>
+                    </form>
                 </div>
-                <div class="col-3">
-                    <a href="{% url 'del_quests' %}" class="btn btn-danger mx-3">Delete Questions</a>
+            </div>
+            <div class="w-50 mt-5 d-flex">
+                <p>
+                    <strong>Questions Table: </strong>
+                </p>
+                <div class="w-50">
+                    <a href="{% url 'show_quest' %}" class="btn btn-primary">Show Questions</a>
+                </div>
+                <div class="w-50">
+                    <a href="{% url 'del_quests' %}" class="btn btn-danger">Delete Questions</a>
                 </div>
             </div>
         </div>

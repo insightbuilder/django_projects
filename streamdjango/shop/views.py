@@ -23,6 +23,8 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from django.http import StreamingHttpResponse
 import time
+from ollama import Client
+
 
 env_template = Environment(
     loader=FileSystemLoader('D:\\streamdjango\\shop\\jinja_prompt'),
@@ -32,7 +34,8 @@ env_template = Environment(
 # open_ai details
 model_used_eco = "gpt-3.5-turbo"
 sql_data_analyst = "You are expert in SQL, data analysis and munging huge volumes of data. You can think about the given question step by step and answer in single line."
-load_dotenv("D:\\streamdjango\\shop\\.env")
+load_dotenv("D:\\gitFolders\\python_de_learners_data\\.env")
+
 
 def llm_call_openai(user_message: str,
                     system_message: str,
@@ -56,6 +59,7 @@ def llm_call_openai(user_message: str,
     except Exception as e:
         logging.info(e)
         return {"error": "An error occurred while processing the request."}
+
 
 def index_home(request):
     return render(request, 'index.html', {"test": "test"})
@@ -124,7 +128,7 @@ def get_new_item(request):
     customer_len = len(objs)
     rand_customer = random.randint(0, customer_len - 1)
     logging.info(rand_customer)
-    customer = objs[rand_customer] 
+    customer = objs[rand_customer]
     item_data = []
     
     for _ in range(1):
@@ -167,7 +171,7 @@ def push_item(request, name, item, price, qty, spend, ts):
                      quantity=qty,
                      total_spend=spend,
                      purchase_ts=ts
-                    )
+                     )
     txn = Purchase(**item_dict)
     try:
         txn.save()
@@ -185,7 +189,7 @@ def push_item(request, name, item, price, qty, spend, ts):
                               total_spend=pdata.total_spend,
                               purchase_ts=pdata.purchase_ts
                               )
-        )
+                        )
     return render(request, 'index.html', {'itemsdb': item_list})
 
 
@@ -210,25 +214,92 @@ def get_llm(request):
         })
  
     if request.GET:
-        text_query = request.GET['text_query']
+        text_query = request.GET['text_q1']
         sql_analysis = sql_temp.render(question=text_query,
                                        itemsdb=items_list)
-        reply_llm = llm_call_openai(user_message=sql_analysis,
-                                    system_message=sql_data_analyst,
-                                    model_used=model_used_eco)['response']
-        logging.info(reply_llm)
+        try:
+            reply_llm = llm_call_openai(user_message=sql_analysis,
+                                        system_message=sql_data_analyst,
+                                        model_used=model_used_eco)['response']
+            logging.info(reply_llm)
+            qobj = questions(question=text_query,
+                             prompt=sql_analysis,
+                             answer=reply_llm)
+            qobj.save()
+        except Exception as e:
+            logging.info(e)
+            reply_llm = f'There was error with AI client: {e}'
+            sql_analysis = reply_llm
+            text_query = text_query
+
         qobj = questions(question=text_query,
                          prompt=sql_analysis,
-                         answer=reply_llm) 
+                         answer=reply_llm)
         qobj.save()
-        return render(request, 'index.html', {'prompt': sql_analysis, 
+        
+        return render(request, 'index.html', {'prompt': sql_analysis,
                                               'reply': reply_llm})
-    reply_llm = 'There was error' 
+    reply_llm = 'There error in Server'
     sql_analysis = 'get request failed'
     text_query = 'Query did not reach server'
     qobj = questions(question=text_query,
+                     prompt=sql_analysis,
+                     answer=reply_llm)
+    qobj.save()
+    return render('page404')
+
+
+def get_ol_llm(request):
+    sql_temp = env_template.get_template("sql_analysis.prompt")
+    items_list = []
+    pobjs = Purchase.objects.all()
+    for pdata in pobjs:
+        items_list.append({
+            "name": pdata.name.name,
+            "item": pdata.item_purchase,
+            "quantity": pdata.quantity,
+            "price": pdata.price,
+            "total_spend": pdata.total_spend,
+            "purchase_ts": pdata.purchase_ts
+        })
+
+    if request.GET:
+        text_query = request.GET['text_q2']
+        sql_analysis = sql_temp.render(question=text_query,
+                                       itemsdb=items_list)
+        try:
+            ollama_client = Client("http://aicontroller:11234")
+
+            reply_llm = ollama_client.chat(model='gemma:2b',
+                                           messages=[
+                                               {
+                                                   "role": "user",
+                                                   "content": sql_analysis
+                                               },
+                                               {
+                                                   "role": "system",
+                                                   "content": sql_data_analyst
+                                               }
+                                               ])['message']['content']
+            logging.info(reply_llm)
+        except Exception as e:
+            logging.info(e)
+            reply_llm = f'There was error with AI client: {e}'
+            sql_analysis = reply_llm
+            text_query = text_query
+
+        qobj = questions(question=text_query,
                          prompt=sql_analysis,
-                         answer=reply_llm) 
+                         answer=reply_llm)
+        qobj.save()
+        return render(request, 'index.html', {'prompt': sql_analysis,
+                                              'reply': reply_llm})
+    reply_llm = 'There was error'
+    sql_analysis = 'get request failed'
+    text_query = 'Query did not reach server'
+    qobj = questions(question=text_query,
+                     prompt=sql_analysis,
+                     answer=reply_llm)
     qobj.save()
     return render('page404')
 
@@ -238,14 +309,16 @@ def stream_reply(request):
     prompt_reply = "" 
     for qobj in qobjs: 
         prompt_reply += f"""Question is: <br> {qobj.question} <br> Answer is: <br> {qobj.answer} <br>"""
+    
     def gen_reply(prompt_reply):
         logging.info(prompt_reply)
         chunked_reply = prompt_reply.split(' ')
         for ind in range(len(chunked_reply)):
             time.sleep(0.5)
             yield chunked_reply[ind] + " "
+    
     response = StreamingHttpResponse(gen_reply(prompt_reply),
-                                    content_type='text/plain')
+                                     content_type='text/plain')
     return response
 
 
@@ -259,6 +332,7 @@ def show_questions(request):
             "answer": pdata.answer,
         })
     return render(request, 'index.html', {'questdb': questions_list})
+
 
 def del_questions(request):
     qobjs = questions.objects.all().delete()
