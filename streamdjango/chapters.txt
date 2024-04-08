@@ -1,0 +1,49 @@
+0:00 Intro
+0:35 Introducing The Shop app
+1:05 Demo of The Shop
+2:10 Creating Showing & Deleting Customers
+3:10 Creating Showing & Deleting Purchase
+4:15 App with Single Page 
+4:45 Querying Openai with Analysis Question 
+5:55 Showing & Deleting Questions
+6:20 Streaming Replies Demo
+6:40 Demo Recap & Error Discussion
+8:15 Overview of Modules & Views Used
+10:30 What is the Business Logic 
+11:20 Explaining the Code Logic
+13:55 How the prompt is rendered
+14:30 Continuing Logic Explanation
+16:10 Code Walkthrough & Server status
+16:55 Front-end walkthrough Explained
+18:10 Introducing Urls.py script 
+19:25 Introducing Models.py scripts
+20:25 OpenAI integration function Explanation
+22:00 Customer related Views code walkthrough 
+25:00 Items related Views code walkthrough
+28:40 Question Showing & Deleting Views Code
+29:50 Ollama Inference Endpoint
+30:15 How Jinja Template help in creating Prompts
+32:45 Populating Jinja Template with Query & Items_list
+33:45 Using AI Client to get response
+35:35 Saving questions & answers to DB
+36:00 Reviewing OpenAI Inference Code Walkthrough
+37:40 Recap of Views
+38:00 Streaming Response View code & demo Explanation
+41:35 Recap
+41:50 Explaining Index.html as a Single Page
+42:20 How Only single Template used for Multiple Views
+44:40 Index.html code explanation along with Demo
+46:25 Connecting Front End to Views with Links
+47:10 Explaining Get Forms for LLM interaction 
+48:30 Populating the Prompt & Reply on Index.html
+49:50 How StreamingRequest Javascript code walkthrough
+52:30 Inspecting Streaming Response in Console.log
+53:45 Calling the JS function with Click 
+54:35 Database will be shared do not migrate
+56:25 Full Recap
+58:15 Importance of Business Logic
+59:00 Challenge with Front-end & other issues
+1:00:00 Ensure Local LLMs have to be Served seperately
+1:01:55 Outro Support Open Source & Warmup Django
+
+
