@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load django_htmx %}
+        {% load static %}
+        <title>{% block title %}{% endblock %}</title>
+        <link href="{% static 'mvp.css' %}"></link>
+    </head>
+    <body hx-ext="debug, event-header">
+        <header>
+            <nav>
+            <h1>
+                <a href="/">
+                django-htmx example app
+                </a>
+            </h1>
+            <ul>
+                <li>
+                <a href="/csrf-demo/">CSRF Demo</a>
+                </li>
+                <li>
+                <a href="/error-demo/">Error Demo</a>
+                </li>
+                <li>
+                <a href="/middleware-tester/">Middleware Tester</a>
+                </li>
+                <li>
+                <a href="/partial-rendering/">Partial Rendering</a>
+                </li>
+            </ul>
+            </nav>
+        </header> 
+        <main class="main">
+            {% block content %}
+            {% endblock %}
+        </main>
+        <footer class="container">
+            <h5>Contact Ultron</h5>
+        </footer>
+        <script src="{% static 'htmx.min.js' %}" defer></script>
+        <script src="{% static 'ext/debug.js' %}" defer></script>
+        <script src="{% static 'ext/event-header.js' %}" defer></script>
+        <script src="{% static 'bootstrap.min.js' %}" defer></script>
+        <script src="{% static 'jquery-3.3.1.slim.min.js' %}" defer></script>
+    </body>
+</html>

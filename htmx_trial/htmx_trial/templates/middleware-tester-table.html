@@ -1,0 +1,78 @@
+{% load example_tags %}
+
+<table id="attribute-test">
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Timestamp</td>
+      <td>{{ timestamp }}</td>
+    </tr>
+    <tr>
+      <td><code>request.method</code></td>
+      <td><code>{{ request.method|stringformat:'r' }}</code></td>
+    </tr>
+    <tr>
+      <td><code>bool(request.htmx)</code></td>
+      <td>
+        {% if request.htmx %}
+          <code>True</code>
+        {% else %}
+          <code>For</code>
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td><code>request.htmx.boosted</code></td>
+      <td><code>{{ request.htmx.boosted|stringformat:'r' }}</code></td>
+    </tr>
+    <tr>
+      <td><code>request.htmx.current_url</code></td>
+      <td><code>{{ request.htmx.current_url|stringformat:'r' }}</code></td>
+    </tr>
+    <tr>
+      <td><code>request.htmx.current_url_abs_path</code></td>
+      <td><code>{{ request.htmx.current_url_abs_path|stringformat:'r' }}</code></td>
+    </tr>
+    <tr>
+      <td><code>request.htmx.prompt</code></td>
+      <td><code>{{ request.htmx.prompt|stringformat:'r' }}</code></td>
+    </tr>
+    <tr>
+      <td><code>request.htmx.target</code></td>
+      <td><code>{{ request.htmx.target|stringformat:'r' }}</code></td>
+    </tr>
+    <tr>
+      <td><code>request.htmx.trigger</code></td>
+      <td><code>{{ request.htmx.trigger|stringformat:'r' }}</code></td>
+    </tr>
+    <tr>
+      <td><code>request.htmx.trigger_name</code></td>
+      <td><code>{{ request.htmx.trigger_name|stringformat:'r' }}</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>request.htmx.triggering_event</code> <br>
+        <small>(via <a href="https://htmx.org/extensions/event-header/">event-header extension</a>)</small>
+      </td>
+      <td>
+        {% if request.htmx.triggering_event %}
+          <details>
+            <summary>JSON</summary>
+            <pre style="text-align: left"><code>{{ request.htmx.triggering_event|json_dumps }}</code></pre>
+          </details>
+        {% else %}
+          <code>{{ request.htmx.triggering_event|stringformat:'r' }}</code>
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td><code>request.POST.get('keyup_input')</code></td>
+      <td><code>{{ request.POST.keyup_input|stringformat:'r' }}</code></td>
+    </tr>
+  </tbody>
+</table>
