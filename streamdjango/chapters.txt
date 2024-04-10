@@ -47,3 +47,19 @@
 1:01:55 Outro Support Open Source & Warmup Django
 
 
+Integration Argilla 
+0:00 Intro of Theme
+0:45 How to Improve the AI Shop
+1:50 Introducing Argilla & Playlist
+2:45 Demo of AI Shop
+5:10 Reviewing Data Pushed to Argilla
+9:25 Walkthrough of Logic 
+10:35 Code walkthrough of Connect Argilla
+15:15 Use of Arg Connect Global Variable
+17:00 Disconnect Argilla View
+17:35 Code Walkthrough of Argilla Record Creation
+20:00 Supporting Function for FB Records
+21:45 Reviewing server records
+23:00 Using ARG_Connect For Disconnect 
+23:45 Recap
+24:30 Outro

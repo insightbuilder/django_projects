@@ -23,18 +23,45 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from django.http import StreamingHttpResponse
 import time
+# pip install ollama
 from ollama import Client
+from argilla import (
+    init,
+    Workspace,
+    FeedbackDataset,
+    FeedbackRecord,
+    TextQuestion,
+    TextField,
+)
 
 
 env_template = Environment(
-    loader=FileSystemLoader('D:\\streamdjango\\shop\\jinja_prompt'),
+    loader=FileSystemLoader('D:\\gitFolders\\django_projects\\streamdjango\\shop\\jinja_prompt'),
     autoescape=select_autoescape
 )
-
+ARG_CONNECT = None 
 # open_ai details
 model_used_eco = "gpt-3.5-turbo"
 sql_data_analyst = "You are expert in SQL, data analysis and munging huge volumes of data. You can think about the given question step by step and answer in single line."
 load_dotenv("D:\\gitFolders\\python_de_learners_data\\.env")
+
+
+def push_rec_fbds(text_query, sql_analysis, reply_llm, fb_ds, fb_ds_name, workspace):
+    records = FeedbackRecord(
+        fields={
+            "question": text_query,
+            "prompt": sql_analysis,
+            "reply": reply_llm  
+        },
+        # metadata=None,
+        # vectors=None
+    )
+    try:
+        fb_ds.add_records([records])
+        # fb_ds.push_to_argilla(name=fb_ds_name, workspace=workspace)
+        logging.info("Pushed records")
+    except Exception as e:
+        logging.info(f"Push failed: {e}")
 
 
 def llm_call_openai(user_message: str,
@@ -200,7 +227,14 @@ def del_items(request):
 
 
 def get_llm(request):
+    global ARG_CONNECT
     sql_temp = env_template.get_template("sql_analysis.prompt")
+    init(
+        api_key="owner.apikey",
+        api_url="https://kamaljp-argillatest.hf.space",
+        extra_headers={"Authorization": f"Bearer {os.environ['HUGGING_FACE_KEY']}"}
+    )
+    fb_ds = FeedbackDataset.from_argilla(name="fb_ds_shop", workspace='hfgilla')
     items_list = []
     pobjs = Purchase.objects.all()
     for pdata in pobjs:
@@ -236,6 +270,20 @@ def get_llm(request):
                          prompt=sql_analysis,
                          answer=reply_llm)
         qobj.save()
+        if ARG_CONNECT:
+            push_rec_fbds(text_query, sql_analysis, reply_llm,
+                        fb_ds, 'fb_ds_shop', 'hfgilla')
+#         records = FeedbackRecord(
+            # fields={
+                # "question": text_query,
+                # "prompt": sql_analysis,
+                # "reply": reply_llm  
+            # },
+            # metadata=None,
+            # vectors=None
+        # )
+        # fb_ds.add_records([records])
+        # fb_ds.push_to_argilla(name='fb_ds_shop', workspace='hfgilla')
         
         return render(request, 'index.html', {'prompt': sql_analysis,
                                               'reply': reply_llm})
@@ -246,11 +294,20 @@ def get_llm(request):
                      prompt=sql_analysis,
                      answer=reply_llm)
     qobj.save()
+    # push_rec_fbds(text_query, sql_analysis, reply_llm, fb_ds, 'fb_ds_shop', 'hfgilla')
+
     return render('page404')
 
 
 def get_ol_llm(request):
+    global ARG_CONNECT
     sql_temp = env_template.get_template("sql_analysis.prompt")
+    init(
+        api_key="owner.apikey",
+        api_url="https://kamaljp-argillatest.hf.space",
+        extra_headers={"Authorization": f"Bearer {os.environ['HUGGING_FACE_KEY']}"}
+    )
+    fb_ds = FeedbackDataset.from_argilla(name="fb_ds_shop", workspace='hfgilla')
     items_list = []
     pobjs = Purchase.objects.all()
     for pdata in pobjs:
@@ -292,6 +349,9 @@ def get_ol_llm(request):
                          prompt=sql_analysis,
                          answer=reply_llm)
         qobj.save()
+        if ARG_CONNECT:
+            push_rec_fbds(text_query, sql_analysis, reply_llm, fb_ds,
+                          'fb_ds_shop', 'hfgilla')
         return render(request, 'index.html', {'prompt': sql_analysis,
                                               'reply': reply_llm})
     reply_llm = 'There was error'
@@ -337,3 +397,48 @@ def show_questions(request):
 def del_questions(request):
     qobjs = questions.objects.all().delete()
     return render(request, 'index.html', {'qstatus': 'deleted'})
+
+
+def disconnect_argilla(request):
+    global ARG_CONNECT 
+    ARG_CONNECT = False
+    return render(request, 'index.html', {"argilla": "fb_ds_shop disconnected"})
+
+
+def integrate_argilla(request):
+    global ARG_CONNECT
+    init(
+        api_key="owner.apikey",
+        api_url="https://kamaljp-argillatest.hf.space",
+        extra_headers={"Authorization": f"Bearer {os.environ['HUGGING_FACE_KEY']}"}
+    )
+    ws = 'hfgilla'
+    question = TextQuestion(
+        name="replyfeedback",
+        title="Checking how well the LLM is replying user query",
+        description="Annotators can elaborately explain the quality",
+        required=True,
+        use_markdown=True
+    )
+    fb_ds_shop = FeedbackDataset(
+        fields=[
+            TextField(name="question", title="User Query", required=True,
+                      use_markdown=True),
+            TextField(name="prompt", title="Generated Prompt", required=True,
+                      use_markdown=True),
+            TextField(name="reply", title="LLM Response", required=True,
+                      use_markdown=True),
+        ],
+        questions=[question],
+        metadata_properties=None,
+        vectors_settings=None,
+        guidelines="Review the User question, and the corresponding prompt and provide feedback"
+    )
+    try:
+        fb_ds_shop.push_to_argilla(name="fb_ds_shop", workspace=ws)
+        ARG_CONNECT = True
+        return render(request, 'index.html', {"argilla": "fb_ds_shop DS created"})
+    except Exception as e:
+        ARG_CONNECT = True
+        logging.info(e)
+        return render(request, 'index.html', {"argilla": "fb_ds_shop already present"})

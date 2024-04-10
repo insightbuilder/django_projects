@@ -92,7 +92,12 @@
         </div>
         {% endif %}
         <div>
-            <h3>Populate Tables: </h3>
+            <div class="row">
+                <h3>Populate Tables: </h3>
+                {% if argilla %}
+                <p><span class="badge badge-success badge-sm mx-3">{{ argilla }}</span></p>
+                {% endif %}
+            </div>
             <p><strong>Names Table: </strong></p> 
             <div class="row">
                 <div class="col-3">

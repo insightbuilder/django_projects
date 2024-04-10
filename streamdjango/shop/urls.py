@@ -14,7 +14,9 @@ from .views import (
     get_ol_llm,
     show_questions,
     stream_reply,
-    del_questions
+    del_questions,
+    integrate_argilla,
+    disconnect_argilla
 )
 
 urlpatterns = [
@@ -36,4 +38,6 @@ urlpatterns = [
     path('show_quest/', show_questions, name='show_quest'),
     path('stream_reply/', stream_reply, name='stream_reply'),
     path('del_quests/', del_questions, name='del_quests'),
+    path('int_arg/', integrate_argilla, name='int_arg'),
+    path('dconnect/', disconnect_argilla, name='dconnect'),
 ]
