@@ -29,6 +29,13 @@ INSTALLED_APPS = [
     'shop',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "sesame.backends.ModelBackend"
+]
+
+SESAME_MAX_AGE = 30
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
