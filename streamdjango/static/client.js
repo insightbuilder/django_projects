@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", () =>{
     const websy = new WebSocket("ws://localhost:7568/");
-    
     document.querySelector("#socket").addEventListener("click", () => {
+        console.log("got in") 
         websy.send('give_data')
     });
 

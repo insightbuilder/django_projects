@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
-    'websoclient',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -115,8 +114,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = "/static/"
-STATICFILES_DIR = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIR = [os.path.join(BASE_DIR, 'static'),
+                    os.path.join(BASE_DIR, 'shop\static'),
+                    os.path.join(BASE_DIR, 'websoc\static')]
+#                    "D:\\gitFolders\\django_projects\\streamdjango\\shop\\static"]
+#                   "D:\\gitFolders\\django_projects\\streamdjango\\websoc\\static",]
 
+# print(STATICFILES_DIR)
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
