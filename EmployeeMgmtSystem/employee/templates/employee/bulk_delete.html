@@ -1,0 +1,45 @@
+<!-- templates/employees/bulk_delete.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Delete Employees</h2>
+<form method="post">
+    {% csrf_token %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Department</th>
+                <th>Position</th>
+                <th>Date Hired</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td><input type="checkbox" name="ids" value="{{ employee.id }}"></td>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.phone_number }}</td>
+                <td>{{ employee.department }}</td>
+                <td>{{ employee.position }}</td>
+                <td>{{ employee.date_hired }}</td>
+                <td>{{ employee.salary }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-danger">Delete Selected</button>
+    <a href="{% url 'employee_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
+

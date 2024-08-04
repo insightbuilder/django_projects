@@ -1,0 +1,46 @@
+<!-- templates/employees/employee_list.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Employee List</h2>
+<a href="{% url 'employee_create' %}" class="btn btn-primary mb-3">Add Employee</a>
+<a href="{% url 'bulk_import' %}" class="btn btn-secondary mb-3">Import Employees</a>
+<a href="{% url 'bulk_delete' %}" class="btn btn-danger mb-3">Delete Employees</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Department</th>
+            <th>Position</th>
+            <th>Date Hired</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.first_name }}</td>
+            <td>{{ employee.last_name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.phone_number }}</td>
+            <td>{{ employee.department }}</td>
+            <td>{{ employee.position }}</td>
+            <td>{{ employee.date_hired }}</td>
+            <td>
+                <a href="{% url 'employee_update' employee.id %}" class="btn btn-info btn-sm">Edit</a>
+                <a href="{% url 'employee_delete' employee.id %}" class="btn btn-danger btn-sm">Delete</a>
+                <a href="{% url 'salary_history' employee.id %}" class="btn btn-secondary btn-sm">Salary History</a>
+            </td>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
