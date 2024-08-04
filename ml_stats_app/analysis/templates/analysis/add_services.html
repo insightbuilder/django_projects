@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load form_tags %}
+{% block title %}Add New Service{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Add New Service</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group row mb-3">
+            <label for="id" class="col-sm-2 col-form-label">{{ form.id.label_tag }}</label>
+            <div class="col-sm-10">
+                {{ form.id|add_class:"form-control" }}
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="name" class="col-sm-2 col-form-label">{{ form.name.label_tag }}</label>
+            <div class="col-sm-10">
+                {{ form.name|add_class:"form-control" }}
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="description" class="col-sm-2 col-form-label">{{ form.description.label_tag }}</label>
+            <div class="col-sm-10">
+                {{ form.description|add_class:"form-control" }}
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="dataset_instructions" class="col-sm-2 col-form-label">{{ form.dataset_instructions.label_tag }}</label>
+            <div class="col-sm-10">
+                {{ form.dataset_instructions|add_class:"form-control" }}
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="use_cases" class="col-sm-2 col-form-label">Use Cases (one per line)</label>
+            <div class="col-sm-10">
+                {{ form.use_cases|add_class:"form-control" }}
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="category" class="col-sm-2 col-form-label">{{ form.category.label_tag }}</label>
+            <div class="col-sm-10">
+                {{ form.category|add_class:"form-control" }}
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <div class="col-sm-10 offset-sm-2">
+                <button type="submit" class="btn btn-primary">Add Service</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

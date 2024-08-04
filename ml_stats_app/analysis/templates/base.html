@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}ML and Statistical Analysis App{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="navbar-brand" href="{% url 'landing_page' %}">InsightML</a>
+                </li>
+                <!-- Add more navigation items here -->
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+          {% block content %}
+          {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
+

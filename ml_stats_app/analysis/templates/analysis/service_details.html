@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}{{ service.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>{{ service.name }}</h1>
+    <p><strong>Description:</strong> {{ service.description }}</p>
+    <p><strong>Dataset Instructions:</strong> {{ service.dataset_instructions }}</p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="dataset">Upload Dataset:</label>
+            <input type="file" class="form-control-file" id="dataset" name="dataset" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload and Process</button>
+    </form>
+
+    {% if dataset %}
+        <h3>Uploaded Dataset:</h3>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    {% for header in dataset.headers %}
+                        <th>{{ header }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in dataset.rows %}
+                    <tr>
+                        {% for cell in row %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Processing Results:</h3>
+        <div>
+            <!-- Display processing results here -->
+            {% if results %}
+                <pre>{{ results }}</pre>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+

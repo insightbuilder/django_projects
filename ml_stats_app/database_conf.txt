@@ -1,0 +1,24 @@
+sudo -u postgres psql
+
+CREATE USER mlappuser WITH PASSWORD ml1234;
+
+ALTER USER mlappuser WITH SUPERUSER;
+
+ALTER USER mlappuser CREATEDB;
+
+CREATE DATABASE mlappdb with OWNER mlappuser;
+
+# Add the below line in sudo nano /etc/postgresql/{version}/main/pg_hba.conf
+
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+local   all             all                                     md5
+
+# Peer authentication checks that the operating system user running the PostgreSQL client matches the PostgreSQL user.
+# md5 (password-based authentication)
+
+# since the database got corrupted during migrations, decided to re-create it
+sudo -u postgres psql (need to use this route, as the db needs to be dropped)
+
+DROP DATABASE mlappdb
+
+CREATE DATABASE mlappdb WITH OWNER mlappuser;

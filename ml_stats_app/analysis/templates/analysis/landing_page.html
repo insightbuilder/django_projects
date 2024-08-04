@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% block title %}Landing Page{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">InsightML</h1>
+    <p>Welcome to InsightML, a comprehensive platform for machine learning and statistical analysis. Our web application provides a suite of tools designed to help you extract valuable insights from your data. Whether you're analyzing trends, making predictions, or uncovering hidden patterns, InsightML has the tools you need to achieve your data analysis goals.</p>
+    
+    <p>Our service offerings include a variety of machine learning algorithms and statistical functions to help you analyze and visualize your data effectively. From predicting future trends to understanding historical patterns, InsightML provides the necessary tools and functionality to support your data-driven decision-making processes.</p>
+    
+    <p>With a user-friendly interface and robust analytical capabilities, InsightML simplifies complex data analysis tasks. Our goal is to make advanced analytics accessible to everyone, empowering users with actionable insights that drive better business outcomes.</p>
+
+    <div class="row mb-4">
+        <!-- Import Services Section -->
+        <div class="col-md-6 mb-3">
+            <h2>Import Services</h2>
+            <p>Upload a CSV file to import multiple services at once. The file should be formatted correctly to ensure accurate data import.</p>
+            <a href="{% url 'import_services' %}" class="btn btn-primary">Import Services</a>
+        </div>
+        
+        <!-- Add New Service Section -->
+        <div class="col-md-6 mb-3">
+            <h2>Add New Service</h2>
+            <p>Manually add a new service to the system. Fill out the form below to provide details about the new service you want to add.</p>
+            <a href="{% url 'add_service' %}" class="btn btn-primary">Add Service</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Sidebar: List of Services -->
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="#ml_services" class="list-group-item list-group-item-action">Machine Learning Services</a>
+                <a href="#stat_services" class="list-group-item list-group-item-action">Statistical Services</a>
+                <a href="#data_analysis_services" class="list-group-item list-group-item-action">Data Analysis Services</a>
+                <!-- <a href="#customer_engagement_services" class="list-group-item list-group-item-action">Customer Engagement Services</a> -->
+                <!-- <a href="#banking_services" class="list-group-item list-group-item-action">Banking Sector Services</a> -->
+                <!-- <a href="#llm_services" class="list-group-item list-group-item-action">Large Language Models</a> -->
+                <!-- <a href="#marketing_analysis_services" class="list-group-item list-group-item-action">Marketing Analysis Services</a> -->
+                <!-- <a href="#product_management_services" class="list-group-item list-group-item-action">Product Management Services</a> -->
+            </div>
+        </div>
+
+        <!-- Right side: Service Details -->
+        <div class="col-md-9">
+            <div class="service-details">
+                <div id="ml_services">
+                    <h2>Machine Learning Services</h2>
+                    <!-- Display ML Services Table -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Dataset Instructions</th>
+                                <th>Use Cases</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for service in ml_services %}
+                              <tr>
+                                  <td><a href="{% url 'service_page' service.id %}">{{ service.name }}</a></td>
+                                  <td>{{ service.description }}</td>
+                                  <td>{{ service.dataset_instructions }}</td>
+                                  <td>{{ service.use_cases }}</td>
+                              </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="stat_services">
+                    <h2>Statistical Services</h2>
+                    <!-- Display Statistical Services Table -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Dataset Instructions</th>
+                                <th>Use Cases</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for service in ml_services %}
+                              <tr>
+                                  <td><a href="{% url 'service_page' service.id %}">{{ service.name }}</a></td>
+                                  <td>{{ service.description }}</td>
+                                  <td>{{ service.dataset_instructions }}</td>
+                                  <td>{{ service.use_cases }}</td>
+                              </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="data_analysis_services">
+                    <h2>Data Analysis Services</h2>
+                    <!-- Display Data Analysis Services Table -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Dataset Instructions</th>
+                                <th>Use Cases</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for service in data_analysis_services %}
+                              <tr>
+                                  <td><a href="{% url 'service_page' service.id %}">{{ service.name }}</a></td>
+                                  <td>{{ service.description }}</td>
+                                  <td>{{ service.dataset_instructions }}</td>
+                                  <td>{{ service.use_cases }}</td>
+                              </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- <div id="customer_engagement_services"> -->
+                <!--     <h2>Customer Engagement Services</h2> -->
+                <!--     <!-- Display Customer Engagement Services Table --> -->
+                <!--     <table class="table"> -->
+                <!--         <thead> -->
+                <!--             <tr> -->
+                <!--                 <th>Name</th> -->
+                <!--                 <th>Description</th> -->
+                <!--                 <th>Dataset Instructions</th> -->
+                <!--                 <th>Use Cases</th> -->
+                <!--             </tr> -->
+                <!--         </thead> -->
+                <!--         <tbody> -->
+                <!--             {% for service in ml_services %} -->
+                <!--               <tr> -->
+                <!--                   <td><a href="{% url 'service_page' service.id %}">{{ service.name }}</a></td> -->
+                <!--                   <td>{{ service.description }}</td> -->
+                <!--                   <td>{{ service.dataset_instructions }}</td> -->
+                <!--                   <td>{{ service.use_cases }}</td> -->
+                <!--               </tr> -->
+                <!--             {% endfor %} -->
+                <!--         </tbody> -->
+                <!--       </table> -->
+                <!-- </div> -->
+
+                <!-- <div id="banking_services"> -->
+                <!--     <h2>Banking Sector Services</h2> -->
+                <!--     <!-- Display Banking Sector Services Table --> -->
+                <!--     <table class="table"> -->
+                <!--         <thead> -->
+                <!--             <tr> -->
+                <!--                 <th>Name</th> -->
+                <!--                 <th>Description</th> -->
+                <!--                 <th>Dataset Instructions</th> -->
+                <!--                 <th>Use Cases</th> -->
+                <!--             </tr> -->
+                <!--         </thead> -->
+                <!--         <tbody> -->
+                <!--             {% for service in banking_services %} -->
+                <!--                 <tr> -->
+                <!--                     <td>{{ service.name }}</td> -->
+                <!--                     <td>{{ service.description }}</td> -->
+                <!--                     <td>{{ service.dataset_instructions }}</td> -->
+                <!--                     <td>{{ service.use_cases }}</td> -->
+                <!--                 </tr> -->
+                <!--             {% endfor %} -->
+                <!--         </tbody> -->
+                <!--     </table> -->
+                <!-- </div> -->
+
+                <!-- <div id="llm_services"> -->
+                <!--     <h2>Large Language Models</h2> -->
+                <!--     <!-- Display Large Language Models Table --> -->
+                <!--     <table class="table"> -->
+                <!--         <thead> -->
+                <!--             <tr> -->
+                <!--                 <th>Name</th> -->
+                <!--                 <th>Description</th> -->
+                <!--                 <th>Dataset Instructions</th> -->
+                <!--                 <th>Use Cases</th> -->
+                <!--             </tr> -->
+                <!--         </thead> -->
+                <!--         <tbody> -->
+                <!--             {% for service in llm_services %} -->
+                <!--                 <tr> -->
+                <!--                     <td>{{ service.name }}</td> -->
+                <!--                     <td>{{ service.description }}</td> -->
+                <!--                     <td>{{ service.dataset_instructions }}</td> -->
+                <!--                     <td>{{ service.use_cases }}</td> -->
+                <!--                 </tr> -->
+                <!--             {% endfor %} -->
+                <!--         </tbody> -->
+                <!--     </table> -->
+                <!-- </div> -->
+
+                <!-- <div id="marketing_analysis_services"> -->
+                <!--     <h2>Marketing Analysis Services</h2> -->
+                <!--     <!-- Display Marketing Analysis Services Table --> -->
+                <!--     <table class="table"> -->
+                <!--         <thead> -->
+                <!--             <tr> -->
+                <!--                 <th>Name</th> -->
+                <!--                 <th>Description</th> -->
+                <!--                 <th>Dataset Instructions</th> -->
+                <!--                 <th>Use Cases</th> -->
+                <!--             </tr> -->
+                <!--         </thead> -->
+                <!--         <tbody> -->
+                <!--             {% for service in marketing_analysis_services %} -->
+                <!--                 <tr> -->
+                <!--                     <td>{{ service.name }}</td> -->
+                <!--                     <td>{{ service.description }}</td> -->
+                <!--                     <td>{{ service.dataset_instructions }}</td> -->
+                <!--                     <td>{{ service.use_cases }}</td> -->
+                <!--                 </tr> -->
+                <!--             {% endfor %} -->
+                <!--         </tbody> -->
+                <!--     </table> -->
+                <!-- </div> -->
+
+                <!-- <div id="product_management_services"> -->
+                <!--     <h2>Product Management Services</h2> -->
+                <!--     <!-- Display Product Management Services Table --> -->
+                <!--     <table class="table"> -->
+                <!--         <thead> -->
+                <!--             <tr> -->
+                <!--                 <th>Name</th> -->
+                <!--                 <th>Description</th> -->
+                <!--                 <th>Dataset Instructions</th> -->
+                <!--                 <th>Use Cases</th> -->
+                <!--             </tr> -->
+                <!--         </thead> -->
+                <!--         <tbody> -->
+                <!--             {% for service in product_management_services %} -->
+                <!--                 <tr> -->
+                <!--                     <td>{{ service.name }}</td> -->
+                <!--                     <td>{{ service.description }}</td> -->
+                <!--                     <td>{{ service.dataset_instructions }}</td> -->
+                <!--                     <td>{{ service.use_cases }}</td> -->
+                <!--                 </tr> -->
+                <!--             {% endfor %} -->
+                <!--         </tbody> -->
+                <!--     </table> -->
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
