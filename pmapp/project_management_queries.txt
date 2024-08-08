@@ -1,0 +1,104 @@
+-- CREATE DATABASE pmapp;
+-- \c pmapp
+
+-- Create the Projects table
+CREATE TABLE Projects (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    start_date DATE,
+    end_date DATE,
+    status VARCHAR(50)
+);
+
+-- Create the Tasks table
+CREATE TABLE Tasks (
+    id SERIAL PRIMARY KEY,
+    project_id INTEGER REFERENCES Projects(id) ON DELETE CASCADE,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    due_date DATE,
+    priority VARCHAR(50)
+);
+
+-- Create the Employees table
+CREATE TABLE Employees (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    email VARCHAR(255) UNIQUE,
+    role VARCHAR(100)
+);
+
+-- Create the Assignments table
+CREATE TABLE Assignments (
+    id SERIAL PRIMARY KEY,
+    task_id INTEGER REFERENCES Tasks(id) ON DELETE CASCADE,
+    employee_id INTEGER REFERENCES Employees(id) ON DELETE CASCADE,
+    assigned_date DATE,
+    status VARCHAR(50)
+);
+
+-- Create the ProjectUpdates table
+CREATE TABLE ProjectUpdates (
+    id SERIAL PRIMARY KEY,
+    project_id INTEGER REFERENCES Projects(id) ON DELETE CASCADE,
+    update_date DATE,
+    update_text TEXT
+);
+
+-- Insert sample data into Projects table
+INSERT INTO Projects (name, description, start_date, end_date, status)
+VALUES
+    ('Website Redesign', 'Redesign the company website with a modern look and better user experience.', '2024-01-01', '2024-06-30', 'In Progress'),
+    ('CRM System Upgrade', 'Upgrade the existing CRM system to improve customer tracking and reporting.', '2024-02-01', '2024-12-31', 'Not Started'),
+    ('New Marketing Campaign', 'Launch a new marketing campaign for the upcoming product line.', '2024-03-01', '2024-08-31', 'In Progress'),
+    ('Employee Onboarding System', 'Develop a new system for onboarding new employees efficiently.', '2024-04-01', '2024-10-01', 'Completed'),
+    ('Internal Communication Tool', 'Create a tool for internal team communication and collaboration.', '2024-05-01', '2024-11-30', 'Not Started');
+
+-- Insert sample data into Tasks table
+INSERT INTO Tasks (project_id, title, description, due_date, priority)
+VALUES
+    (1, 'Design Homepage', 'Create the initial design mockups for the homepage.', '2024-02-15', 'High'),
+    (1, 'Develop Frontend', 'Develop the frontend for the new website based on the design mockups.', '2024-04-30', 'High'),
+    (2, 'Database Migration', 'Migrate existing CRM data to the new system.', '2024-06-30', 'Medium'),
+    (2, 'System Testing', 'Test the new CRM system for bugs and issues.', '2024-11-30', 'Medium'),
+    (3, 'Campaign Strategy', 'Develop the strategy for the marketing campaign.', '2024-04-15', 'High'),
+    (3, 'Create Advertisements', 'Design and produce advertisements for the campaign.', '2024-07-15', 'High'),
+    (4, 'System Design', 'Design the architecture for the new onboarding system.', '2024-05-15', 'Medium'),
+    (4, 'Development', 'Develop the onboarding system based on the design.', '2024-08-30', 'High'),
+    (5, 'Requirement Gathering', 'Gather requirements for the internal communication tool.', '2024-06-15', 'Medium'),
+    (5, 'Prototype Development', 'Develop a prototype for the internal communication tool.', '2024-09-30', 'Medium');
+
+-- Insert sample data into Employees table
+INSERT INTO Employees (first_name, last_name, email, role)
+VALUES
+    ('John', 'Doe', 'john.doe@example.com', 'Project Manager'),
+    ('Jane', 'Smith', 'jane.smith@example.com', 'Frontend Developer'),
+    ('Emily', 'Johnson', 'emily.johnson@example.com', 'Backend Developer'),
+    ('Michael', 'Brown', 'michael.brown@example.com', 'QA Engineer'),
+    ('Linda', 'Davis', 'linda.davis@example.com', 'Marketing Specialist');
+
+-- Insert sample data into Assignments table
+INSERT INTO Assignments (task_id, employee_id, assigned_date, status)
+VALUES
+    (1, 2, '2024-01-10', 'In Progress'),
+    (2, 2, '2024-02-01', 'Not Started'),
+    (3, 3, '2024-04-01', 'Not Started'),
+    (4, 3, '2024-10-01', 'Not Started'),
+    (5, 5, '2024-03-05', 'In Progress'),
+    (6, 5, '2024-05-01', 'Not Started'),
+    (7, 4, '2024-05-10', 'In Progress'),
+    (8, 4, '2024-08-01', 'Not Started'),
+    (9, 1, '2024-06-01', 'Not Started'),
+    (10, 1, '2024-08-01', 'Not Started');
+
+-- Insert sample data into ProjectUpdates table
+INSERT INTO ProjectUpdates (project_id, update_date, update_text)
+VALUES
+    (1, '2024-02-01', 'Initial design mockups have been completed and approved. Frontend development has started.'),
+    (2, '2024-05-15', 'Database migration is on track. System testing is scheduled for the next quarter.'),
+    (3, '2024-06-01', 'Campaign strategy has been finalized. Advertisements are in production.'),
+    (4, '2024-08-15', 'Development of the onboarding system is on track. Testing phase will begin next month.'),
+    (5, '2024-07-01', 'Requirement gathering is underway. Prototype development will start in August.');
+
